@@ -1,5 +1,6 @@
 package com.sharesapp.backend.controller;
 
+import com.sharesapp.backend.dto.CompanyDto;
 import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.service.impl.ShareServiceImpl;
@@ -27,6 +28,11 @@ public class ShareController {
     @GetMapping("/{id}")
     public ResponseEntity<ShareDto> getShare(@PathVariable Long id) {
         return ResponseEntity.of(shareService.getById(id));
+    }
+
+    @GetMapping("/{id}/company")
+    public ResponseEntity<CompanyDto> getCompany(@PathVariable Long id) {
+        return ResponseEntity.of(shareService.getCompany(id));
     }
 
     @GetMapping("/all")

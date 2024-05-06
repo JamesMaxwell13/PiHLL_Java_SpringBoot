@@ -1,5 +1,6 @@
 package com.sharesapp.backend.service.impl;
 
+import com.sharesapp.backend.dto.CompanyDto;
 import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.model.Company;
@@ -50,6 +51,15 @@ public class ShareServiceImpl implements ShareService {
             return Optional.empty();
         }
         return Optional.of(modelMapper.map(share, ShareDto.class));
+    }
+
+    @Override
+    public Optional<CompanyDto> getCompany(Long id) {
+        Share share = shareRepository.findById(id).orElse(null);
+        if (share == null) {
+            return Optional.empty();
+        }
+        return Optional.of(modelMapper.map(share.getCompany(), CompanyDto.class));
     }
 
     @Override
