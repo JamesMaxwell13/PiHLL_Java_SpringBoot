@@ -3,6 +3,7 @@ package com.sharesapp.backend.controller;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
+import com.sharesapp.backend.dto.user.UserShareDto;
 import com.sharesapp.backend.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +59,10 @@ public class UserController {
     @DeleteMapping("/{id}/shares")
     public ResponseEntity<ShareDto> sellShare(@PathVariable("id") Long userId, @RequestParam(value = "share_id") Long shareId) {
         return ResponseEntity.of(userService.sellShare(userId, shareId));
+    }
+
+    @GetMapping("/all/all")
+    public ResponseEntity<List<UserShareDto>> getAllUsersSharesAndCompanies() {
+        return ResponseEntity.of(userService.getUsersSharesAndCompanies());
     }
 }

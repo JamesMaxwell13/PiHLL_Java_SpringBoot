@@ -12,7 +12,7 @@ public class CompanyDto {
 
     private String name;
 
-    private Double capital;
+    private Double capitalize;
 
     private String adress;
 

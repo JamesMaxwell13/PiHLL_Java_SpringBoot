@@ -3,6 +3,7 @@ package com.sharesapp.backend.service.impl;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
+import com.sharesapp.backend.dto.user.UserShareDto;
 import com.sharesapp.backend.model.Share;
 import com.sharesapp.backend.model.User;
 import com.sharesapp.backend.repository.ShareRepository;
@@ -106,5 +107,15 @@ public class UserServiceImpl implements UserService {
         user.removeShare(shareId);
         userRepository.save(user);
         return Optional.of(modelMapper.map(share, ShareDto.class));
+    }
+
+    @Override
+    public Optional<List<UserShareDto>> getUsersSharesAndCompanies() {
+        List<User> users = userRepository.findAll();
+        if(users.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(Arrays.asList(modelMapper.map(users, UserShareDto[].class)));
+
     }
 }

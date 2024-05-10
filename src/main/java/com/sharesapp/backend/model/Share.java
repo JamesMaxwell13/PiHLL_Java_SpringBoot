@@ -17,23 +17,23 @@ public class Share {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "prev_price")
-    private Float prevClose;
+    @Column(name = "prev_close_price")
+    private Float prevClosePrice;
 
     @Column(name = "high_price")
-    private Float high;
+    private Float highPrice;
 
     @Column(name = "low_price")
-    private Float low;
+    private Float lowPrice;
 
     @Column(name = "open_price")
-    private Float open;
+    private Float openPrice;
 
-    @Column(name = "last_price")
+    @Column(name = "last_sale_price")
     private Float lastSalePrice;
 
-    @Column(name = "time_update")
-    private Instant lastUpdated;
+    @Column(name = "last_time_update")
+    private Instant lastTimeUpdated;
 
     @Column(name = "symbol")
     private String symbol;

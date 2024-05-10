@@ -12,15 +12,15 @@ import java.time.Instant;
 public class ShareDto {
     private Long id;
 
-    private Float prevClose;
+    private Float prevClosePrice;
 
-    private Float high;
+    private Float highPrice;
 
-    private Float low;
+    private Float lowPrice;
 
     private Float lastSalePrice;
 
-    private Instant lastUpdated;
+    private Instant lastTimeUpdated;
 
     private String symbol;
 }

@@ -16,11 +16,11 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "company_name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "capital")
-    private Double capital;
+    @Column(name = "capitalize")
+    private Double capitalize;
 
     @Column(name = "adress")
     private String adress;
