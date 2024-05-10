@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CompanyService {
-    Optional<CompanyDto> createCompany(CompanyDto shareDto);
+    Optional<CompanyDto> createCompany(CompanyDto companyDto);
     Optional<CompanyDto> getById(Long id);
     Optional<List<CompanyDto>> getAllCompanies();
     Optional<CompanyDto> updateCompany(Long id, CompanyDto companyDto);
