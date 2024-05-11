@@ -18,6 +18,8 @@ public class ShareDto {
 
     private Float lowPrice;
 
+    private Float openPrice;
+
     private Float lastSalePrice;
 
     private Instant lastTimeUpdated;
