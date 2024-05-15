@@ -18,4 +18,5 @@ public interface UserService {
     Optional<ShareDto> sellShare(Long userId, Long shareId);
     Optional<List<ShareDto>> getShares(Long id);
     Optional<List<UserShareDto>> getUsersSharesAndCompanies();
+    Optional<List<UserShareDto>> getUsersByCompanyAndSharePriceRange(Long companyId, Float minPrice, Float maxPrice);
 }

@@ -8,6 +8,7 @@ import com.sharesapp.backend.model.Share;
 import com.sharesapp.backend.repository.CompanyRepository;
 import com.sharesapp.backend.repository.ShareRepository;
 import com.sharesapp.backend.service.ShareService;
+import com.sharesapp.backend.utils.cache.GenericCache;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,15 @@ import java.util.Optional;
 public class ShareServiceImpl implements ShareService {
     private final ShareRepository shareRepository;
     private final CompanyRepository companyRepository;
+    private final GenericCache<Long, Share> cache;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public ShareServiceImpl(ShareRepository shareRepository, ModelMapper modelMapper, CompanyRepository companyRepository) {
+    public ShareServiceImpl(ShareRepository shareRepository, ModelMapper modelMapper, CompanyRepository companyRepository, GenericCache<Long, Share> cache) {
         this.shareRepository = shareRepository;
         this.companyRepository = companyRepository;
         this.modelMapper = modelMapper;
+        this.cache = cache;
     }
 
     @Override
@@ -41,24 +44,27 @@ public class ShareServiceImpl implements ShareService {
         company.addShare(share);
         companyRepository.save(company);
         Share savedShare = shareRepository.save(share);
+        cache.clear();
         return Optional.of(modelMapper.map(savedShare, ShareDto.class));
     }
 
     @Override
     public Optional<ShareDto> getById(Long id) {
-        Share share = shareRepository.findById(id).orElse(null);
+        Share share = cache.get(id).orElseGet(() -> shareRepository.findById(id).orElse(null));
         if (share == null) {
             return Optional.empty();
         }
+        cache.put(id, share);
         return Optional.of(modelMapper.map(share, ShareDto.class));
     }
 
     @Override
     public Optional<CompanyDto> getCompany(Long id) {
-        Share share = shareRepository.findById(id).orElse(null);
+        Share share = cache.get(id).orElseGet(() -> shareRepository.findById(id).orElse(null));
         if (share == null) {
             return Optional.empty();
         }
+        cache.put(id, share);
         return Optional.of(modelMapper.map(share.getCompany(), CompanyDto.class));
     }
 
@@ -81,12 +87,14 @@ public class ShareServiceImpl implements ShareService {
         if(company == null) {
             return Optional.empty();
         }
+        cache.remove(id);
         company.removeShare(share.getId());
         companyRepository.save(company);
         shareDto.setId(id);
         Share updatedShare = shareRepository.save(modelMapper.map(shareDto, Share.class));
         company.addShare(updatedShare);
         companyRepository.save(company);
+        cache.put(id, updatedShare);
         return Optional.of(modelMapper.map(updatedShare, ShareDto.class));
     }
 
@@ -103,6 +111,7 @@ public class ShareServiceImpl implements ShareService {
         company.removeShare(share.getId());
         companyRepository.save(company);
         shareRepository.deleteById(id);
+        cache.remove(id);
         return Optional.of(modelMapper.map(share, ShareDto.class));
     }
 }
