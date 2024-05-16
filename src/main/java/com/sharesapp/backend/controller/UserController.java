@@ -64,7 +64,7 @@ public class UserController {
     @GetMapping("/all/all")
     public ResponseEntity<List<UserShareDto>> getAllUsersSharesAndCompanies() {
         return ResponseEntity.of(userService.getUsersSharesAndCompanies());
-    };
+    }
 
     @GetMapping("/select/{company_id}")
     public ResponseEntity<List<UserShareDto>> getUsersByCompanyAndSharePriceRange(@PathVariable("company_id") Long id,

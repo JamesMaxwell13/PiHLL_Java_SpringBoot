@@ -6,6 +6,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ShareCompanyDto extends ShareDto{
+public class ShareCompanyDto extends ShareDto {
     private CompanyDto company;
 }

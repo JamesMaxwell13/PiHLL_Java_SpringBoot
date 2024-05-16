@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ShareRepository shareRepository, GenericCache<Long, User> cache, ModelMapper modelMapper) {
+    public UserServiceImpl(UserRepository userRepository, ShareRepository shareRepository,
+                           GenericCache<Long, User> cache, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.shareRepository = shareRepository;
         this.cache = cache;
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserDto> getById(Long id) {
         User user = cache.get(id).orElseGet(() -> userRepository.findById(id).orElse(null));
-        if(user == null) {
+        if (user == null) {
             return Optional.empty();
         }
         cache.put(id, user);
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<List<UserDto>> getAllUsers() {
         List<User> users = userRepository.findAll();
-        if(users.isEmpty()) {
+        if (users.isEmpty()) {
             return Optional.empty();
         }
         return Optional.of(Arrays.asList(modelMapper.map(users, UserDto[].class)));
@@ -64,7 +65,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserDto> updateUser(Long id, UserDto userDto) {
         User user = userRepository.findById(id).orElse(null);
-        if(user == null) {
+        if (user == null) {
             return Optional.empty();
         }
         cache.remove(id);
@@ -77,7 +78,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserDto> deleteUser(Long id) {
         User user = userRepository.findById(id).orElse(null);
-        if(user == null) {
+        if (user == null) {
             return Optional.empty();
         }
         userRepository.deleteById(id);
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService {
     public Optional<ShareDto> buyShare(Long userId, Long shareId) {
         User user = userRepository.findById(userId).orElse(null);
         Share share = shareRepository.findById(shareId).orElse(null);
-        if(user == null || share == null) {
+        if (user == null || share == null) {
             return Optional.empty();
         }
         user.addShare(share);
@@ -100,7 +101,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<List<ShareDto>> getShares(Long id) {
         User user = userRepository.findById(id).orElse(null);
-        if(user == null) {
+        if (user == null) {
             return Optional.empty();
         }
         return Optional.of(Arrays.asList(modelMapper.map(user.getShares(), ShareDto[].class)));
@@ -109,7 +110,7 @@ public class UserServiceImpl implements UserService {
     public Optional<ShareDto> sellShare(Long userId, Long shareId) {
         User user = userRepository.findById(userId).orElse(null);
         Share share = shareRepository.findById(shareId).orElse(null);
-        if(user == null || share == null) {
+        if (user == null || share == null) {
             return Optional.empty();
         }
         user.removeShare(shareId);
@@ -120,7 +121,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<List<UserShareDto>> getUsersSharesAndCompanies() {
         List<User> users = userRepository.findAll();
-        if(users.isEmpty()) {
+        if (users.isEmpty()) {
             return Optional.empty();
         }
         return Optional.of(Arrays.asList(modelMapper.map(users, UserShareDto[].class)));
@@ -131,7 +132,7 @@ public class UserServiceImpl implements UserService {
                                                                             Float minPrice,
                                                                             Float maxPrice) {
         List<User> selectUsers = userRepository.findUsersByCompanyAndSharePriceRange(companyId, minPrice, maxPrice);
-        if(selectUsers.isEmpty()) {
+        if (selectUsers.isEmpty()) {
             return Optional.empty();
         }
         return Optional.of(Arrays.asList(modelMapper.map(selectUsers, UserShareDto[].class)));

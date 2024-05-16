@@ -41,8 +41,7 @@ public class Company {
     }
 
     public void removeShare(Long shareId) {
-        Share share =
-                this.shares.stream().filter(t -> t.getId().equals(shareId)).findFirst().orElse(null);
+        Share share = this.shares.stream().filter(t -> t.getId().equals(shareId)).findFirst().orElse(null);
         if (share != null) {
             this.shares.remove(share);
             share.setCompany(null);

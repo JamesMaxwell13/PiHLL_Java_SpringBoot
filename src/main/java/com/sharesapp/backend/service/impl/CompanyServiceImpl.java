@@ -82,7 +82,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Optional<List<ShareDto>> getShares(Long id) {
         Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
-        if(company == null) {
+        if (company == null) {
             return Optional.empty();
         }
         cache.put(id, company);

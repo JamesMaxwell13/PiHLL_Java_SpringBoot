@@ -27,7 +27,8 @@ public class ShareServiceImpl implements ShareService {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public ShareServiceImpl(ShareRepository shareRepository, ModelMapper modelMapper, CompanyRepository companyRepository, GenericCache<Long, Share> cache) {
+    public ShareServiceImpl(ShareRepository shareRepository, ModelMapper modelMapper,
+                            CompanyRepository companyRepository, GenericCache<Long, Share> cache) {
         this.shareRepository = shareRepository;
         this.companyRepository = companyRepository;
         this.modelMapper = modelMapper;
@@ -38,7 +39,7 @@ public class ShareServiceImpl implements ShareService {
     public Optional<ShareDto> createShare(CreateShare createShare) {
         Share share = modelMapper.map(createShare, Share.class);
         Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
-        if(company == null) {
+        if (company == null) {
             return Optional.empty();
         }
         company.addShare(share);
@@ -84,7 +85,7 @@ public class ShareServiceImpl implements ShareService {
             return Optional.empty();
         }
         Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
-        if(company == null) {
+        if (company == null) {
             return Optional.empty();
         }
         cache.remove(id);
@@ -105,7 +106,7 @@ public class ShareServiceImpl implements ShareService {
             return Optional.empty();
         }
         Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
-        if(company == null) {
+        if (company == null) {
             return Optional.empty();
         }
         company.removeShare(share.getId());

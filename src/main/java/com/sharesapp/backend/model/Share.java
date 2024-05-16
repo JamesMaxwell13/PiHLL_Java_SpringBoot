@@ -39,9 +39,7 @@ public class Share {
     private String symbol;
 
     @ManyToMany
-    @JoinTable(name = "shares_users",
-            joinColumns = @JoinColumn(name = "share_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "shares_users", joinColumns = @JoinColumn(name = "share_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<User> users = new HashSet<>();
