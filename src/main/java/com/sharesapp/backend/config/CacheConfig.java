@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class CacheConfig<K, V> {
-
     @Bean
     @Scope("prototype")
     public GenericCache<K, V> cache() {
