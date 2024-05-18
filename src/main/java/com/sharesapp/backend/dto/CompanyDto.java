@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompanyDto {
-    private Long id;
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private Double capitalize;
+  private Double capitalize;
 
-    private String adress;
+  private String adress;
 
-    private String website;
+  private String website;
 }

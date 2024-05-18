@@ -1,29 +1,28 @@
 package com.sharesapp.backend.dto.share;
 
+import java.time.Instant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.Instant;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShareDto {
-    private Long id;
+  private Long id;
 
-    private Float prevClosePrice;
+  private Float prevClosePrice;
 
-    private Float highPrice;
+  private Float highPrice;
 
-    private Float lowPrice;
+  private Float lowPrice;
 
-    private Float openPrice;
+  private Float openPrice;
 
-    private Float lastSalePrice;
+  private Float lastSalePrice;
 
-    private Instant lastTimeUpdated;
+  private Instant lastTimeUpdated;
 
-    private String symbol;
+  private String symbol;
 }
 

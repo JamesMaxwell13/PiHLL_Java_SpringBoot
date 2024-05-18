@@ -6,5 +6,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public final class CreateShare extends ShareDto {
-    private Long companyId;
+  private Long companyId;
 }

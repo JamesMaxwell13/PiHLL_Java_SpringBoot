@@ -6,5 +6,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public final class CreateUser extends UserDto {
-    private String password;
+  private String password;
 }
