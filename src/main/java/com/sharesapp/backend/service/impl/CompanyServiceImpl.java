@@ -1,7 +1,10 @@
 package com.sharesapp.backend.service.impl;
 
+import com.sharesapp.backend.aspect.Logging;
 import com.sharesapp.backend.dto.CompanyDto;
 import com.sharesapp.backend.dto.share.ShareDto;
+import com.sharesapp.backend.exceptions.BadRequestException;
+import com.sharesapp.backend.exceptions.NotFoundException;
 import com.sharesapp.backend.model.Company;
 import com.sharesapp.backend.repository.CompanyRepository;
 import com.sharesapp.backend.service.CompanyService;
@@ -29,37 +32,45 @@ public class CompanyServiceImpl implements CompanyService {
     this.modelMapper = modelMapper;
   }
 
+  @Logging
   @Override
-  public Optional<CompanyDto> createCompany(CompanyDto companyDto) {
+  public Optional<CompanyDto> createCompany(CompanyDto companyDto) throws BadRequestException {
+    if (companyDto.getName() == null || companyDto.getName().isEmpty()) {
+      throw new BadRequestException("Wrong company name");
+    }
     Company savedCompany = companyRepository.save(modelMapper.map(companyDto, Company.class));
     cache.clear();
     return Optional.of(modelMapper.map(savedCompany, CompanyDto.class));
   }
 
+  @Logging
   @Override
-  public Optional<CompanyDto> getById(Long id) {
+  public Optional<CompanyDto> getById(Long id) throws NotFoundException {
     Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
     if (company == null) {
-      return Optional.empty();
+      throw new NotFoundException("There is no company with id = ", id);
     }
     cache.put(id, company);
     return Optional.of(modelMapper.map(company, CompanyDto.class));
   }
 
+  @Logging
   @Override
-  public Optional<List<CompanyDto>> getAllCompanies() {
+  public Optional<List<CompanyDto>> getAllCompanies() throws NotFoundException {
     List<Company> companies = companyRepository.findAll();
     if (companies.isEmpty()) {
-      return Optional.empty();
+      throw new NotFoundException("There is no companies");
     }
     return Optional.of(Arrays.asList(modelMapper.map(companies, CompanyDto[].class)));
   }
 
+  @Logging
   @Override
-  public Optional<CompanyDto> updateCompany(Long id, CompanyDto companyDto) {
+  public Optional<CompanyDto> updateCompany(Long id, CompanyDto companyDto)
+      throws BadRequestException {
     Company company = companyRepository.findById(id).orElse(null);
-    if (company == null) {
-      return Optional.empty();
+    if (company == null || companyDto.getName() == null || companyDto.getName().isEmpty()) {
+      throw new BadRequestException("Wrong company name or there is no such company");
     }
     cache.remove(id);
     companyDto.setId(id);
@@ -68,17 +79,19 @@ public class CompanyServiceImpl implements CompanyService {
     return Optional.of(modelMapper.map(updatedCompany, CompanyDto.class));
   }
 
+  @Logging
   @Override
-  public Optional<CompanyDto> deleteCompany(Long id) {
+  public Optional<CompanyDto> deleteCompany(Long id) throws NotFoundException {
     Company company = companyRepository.findById(id).orElse(null);
     if (company == null) {
-      return Optional.empty();
+      throw new NotFoundException("There is no company with id = ", id);
     }
     cache.remove(id);
     companyRepository.deleteById(id);
     return Optional.of(modelMapper.map(company, CompanyDto.class));
   }
 
+  @Logging
   @Override
   public Optional<List<ShareDto>> getShares(Long id) {
     Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
