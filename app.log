@@ -1,6 +1,2 @@
-12:49:09.941 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
-12:50:51.273 INFO  c.s.backend.aspect.LoggingAspect - Called method getById() with args: [68]
-12:50:51.388 ERROR c.s.backend.aspect.LoggingAspect - In the method getById() throwed exception with message: There is no company with id = 68
-12:51:37.160 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
-12:51:37.397 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=4, name=erat, capitalize=45600.87, adress=Minsk, st.gikalo,9, website=erat.by), CompanyDto(id=5, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=6, name=New York Times, capitalize=4.444444444487E10, adress=New York, st.Washington,54a, website=ny-times.com)]]
-12:52:47.444 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed
+15:12:17.918 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+15:13:11.564 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed
