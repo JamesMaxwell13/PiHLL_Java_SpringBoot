@@ -1,8 +1,11 @@
 package com.sharesapp.backend.service.impl;
 
+import com.sharesapp.backend.aspect.Logging;
 import com.sharesapp.backend.dto.CompanyDto;
 import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
+import com.sharesapp.backend.exceptions.BadRequestException;
+import com.sharesapp.backend.exceptions.NotFoundException;
 import com.sharesapp.backend.model.Company;
 import com.sharesapp.backend.model.Share;
 import com.sharesapp.backend.repository.CompanyRepository;
@@ -25,6 +28,10 @@ public class ShareServiceImpl implements ShareService {
   private final GenericCache<Long, Share> cache;
   private final ModelMapper modelMapper;
 
+  private static final String SHARE_ERROR_MESSAGE = "There is no share with id = ";
+  private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
+
+
   @Autowired
   public ShareServiceImpl(ShareRepository shareRepository, ModelMapper modelMapper,
                           CompanyRepository companyRepository, GenericCache<Long, Share> cache) {
@@ -34,12 +41,17 @@ public class ShareServiceImpl implements ShareService {
     this.cache = cache;
   }
 
+  @Logging
   @Override
-  public Optional<ShareDto> createShare(CreateShare createShare) {
+  public Optional<ShareDto> createShare(CreateShare createShare) throws BadRequestException {
     Share share = modelMapper.map(createShare, Share.class);
     Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
+    if (createShare.getCompanyId() == null || createShare.getLastSalePrice() == null
+        || createShare.getSymbol().isEmpty()) {
+      throw new BadRequestException("Wrong share information");
+    }
     if (company == null) {
-      return Optional.empty();
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE, share.getCompany().getId());
     }
     company.addShare(share);
     companyRepository.save(company);
@@ -48,44 +60,48 @@ public class ShareServiceImpl implements ShareService {
     return Optional.of(modelMapper.map(savedShare, ShareDto.class));
   }
 
+  @Logging
   @Override
-  public Optional<ShareDto> getById(Long id) {
+  public Optional<ShareDto> getById(Long id) throws NotFoundException {
     Share share = cache.get(id).orElseGet(() -> shareRepository.findById(id).orElse(null));
     if (share == null) {
-      return Optional.empty();
+      throw new NotFoundException(SHARE_ERROR_MESSAGE, id);
     }
     cache.put(id, share);
     return Optional.of(modelMapper.map(share, ShareDto.class));
   }
 
+  @Logging
   @Override
-  public Optional<CompanyDto> getCompany(Long id) {
+  public Optional<CompanyDto> getCompany(Long id) throws NotFoundException {
     Share share = cache.get(id).orElseGet(() -> shareRepository.findById(id).orElse(null));
     if (share == null) {
-      return Optional.empty();
+      throw new NotFoundException(SHARE_ERROR_MESSAGE, id);
     }
     cache.put(id, share);
     return Optional.of(modelMapper.map(share.getCompany(), CompanyDto.class));
   }
 
+  @Logging
   @Override
-  public Optional<List<ShareDto>> getAllShares() {
+  public Optional<List<ShareDto>> getAllShares() throws NotFoundException {
     List<Share> shares = shareRepository.findAll();
     if (shares.isEmpty()) {
-      return Optional.empty();
+      throw new NotFoundException("There are no shares");
     }
     return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
   }
 
+  @Logging
   @Override
-  public Optional<ShareDto> updateShare(Long id, ShareDto shareDto) {
+  public Optional<ShareDto> updateShare(Long id, ShareDto shareDto) throws NotFoundException {
     Share share = shareRepository.findById(id).orElse(null);
-    if (share == null) {
-      return Optional.empty();
+    if (share == null || shareDto.getLastSalePrice() == null || shareDto.getSymbol().isEmpty()) {
+      throw new BadRequestException("Wrong share information or this share doesn't exist");
     }
     Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
     if (company == null) {
-      return Optional.empty();
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE, share.getCompany().getId());
     }
     cache.remove(id);
     company.removeShare(share.getId());
@@ -98,15 +114,16 @@ public class ShareServiceImpl implements ShareService {
     return Optional.of(modelMapper.map(updatedShare, ShareDto.class));
   }
 
+  @Logging
   @Override
-  public Optional<ShareDto> deleteShare(Long id) {
+  public Optional<ShareDto> deleteShare(Long id) throws NotFoundException {
     Share share = shareRepository.findById(id).orElse(null);
     if (share == null) {
-      return Optional.empty();
+      throw new NotFoundException(SHARE_ERROR_MESSAGE, id);
     }
     Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
     if (company == null) {
-      return Optional.empty();
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE, share.getCompany().getId());
     }
     company.removeShare(share.getId());
     companyRepository.save(company);

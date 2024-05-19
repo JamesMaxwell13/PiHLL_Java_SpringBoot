@@ -24,6 +24,8 @@ public class CompanyServiceImpl implements CompanyService {
   private final GenericCache<Long, Company> cache;
   private final ModelMapper modelMapper;
 
+  private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
+
   @Autowired
   public CompanyServiceImpl(CompanyRepository companyRepository, GenericCache<Long, Company> cache,
                             ModelMapper modelMapper) {
@@ -35,7 +37,7 @@ public class CompanyServiceImpl implements CompanyService {
   @Logging
   @Override
   public Optional<CompanyDto> createCompany(CompanyDto companyDto) throws BadRequestException {
-    if (companyDto.getName() == null || companyDto.getName().isEmpty()) {
+    if (companyDto.getName().isEmpty()) {
       throw new BadRequestException("Wrong company name");
     }
     Company savedCompany = companyRepository.save(modelMapper.map(companyDto, Company.class));
@@ -48,7 +50,7 @@ public class CompanyServiceImpl implements CompanyService {
   public Optional<CompanyDto> getById(Long id) throws NotFoundException {
     Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
     if (company == null) {
-      throw new NotFoundException("There is no company with id = ", id);
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE, id);
     }
     cache.put(id, company);
     return Optional.of(modelMapper.map(company, CompanyDto.class));
@@ -59,7 +61,7 @@ public class CompanyServiceImpl implements CompanyService {
   public Optional<List<CompanyDto>> getAllCompanies() throws NotFoundException {
     List<Company> companies = companyRepository.findAll();
     if (companies.isEmpty()) {
-      throw new NotFoundException("There is no companies");
+      throw new NotFoundException("There are no companies");
     }
     return Optional.of(Arrays.asList(modelMapper.map(companies, CompanyDto[].class)));
   }
@@ -84,7 +86,7 @@ public class CompanyServiceImpl implements CompanyService {
   public Optional<CompanyDto> deleteCompany(Long id) throws NotFoundException {
     Company company = companyRepository.findById(id).orElse(null);
     if (company == null) {
-      throw new NotFoundException("There is no company with id = ", id);
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE, id);
     }
     cache.remove(id);
     companyRepository.deleteById(id);
@@ -96,7 +98,10 @@ public class CompanyServiceImpl implements CompanyService {
   public Optional<List<ShareDto>> getShares(Long id) {
     Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
     if (company == null) {
-      return Optional.empty();
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE, id);
+    }
+    if (company.getShares().isEmpty()) {
+      throw new NotFoundException("There is no shares");
     }
     cache.put(id, company);
     return Optional.of(Arrays.asList(modelMapper.map(company.getShares(), ShareDto[].class)));
