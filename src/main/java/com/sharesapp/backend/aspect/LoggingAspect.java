@@ -26,9 +26,7 @@ public class LoggingAspect {
       log.info("Method {} is returned with value: {}", methodName, output);
       return output;
     } catch (Throwable exception) {
-      log.error(
-          "In the method {}() throwed exception with message: {}",
-          methodName,
+      log.error("In the method {}() throwed exception with message: {}", methodName,
           exception.getMessage());
       throw exception;
     }

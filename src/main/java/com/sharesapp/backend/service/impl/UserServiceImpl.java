@@ -1,5 +1,6 @@
 package com.sharesapp.backend.service.impl;
 
+import com.sharesapp.backend.aspect.Logging;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
     this.modelMapper = modelMapper;
   }
 
+  @Logging
   @Override
   public Optional<UserDto> createUser(CreateUser createUser) throws BadRequestException {
     if (createUser.getFirstName().isEmpty() || createUser.getLastName().isEmpty()) {
@@ -50,6 +52,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(modelMapper.map(savedUser, UserDto.class));
   }
 
+  @Logging
   @Override
   public Optional<UserDto> getById(Long id) throws NotFoundException {
     User user = cache.get(id).orElseGet(() -> userRepository.findById(id).orElse(null));
@@ -60,6 +63,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(modelMapper.map(user, UserDto.class));
   }
 
+  @Logging
   @Override
   public Optional<List<UserDto>> getAllUsers() throws NotFoundException {
     List<User> users = userRepository.findAll();
@@ -69,6 +73,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(Arrays.asList(modelMapper.map(users, UserDto[].class)));
   }
 
+  @Logging
   @Override
   public Optional<UserDto> updateUser(Long id, UserDto userDto) throws BadRequestException {
     User user = userRepository.findById(id).orElse(null);
@@ -82,6 +87,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(modelMapper.map(updatedUser, UserDto.class));
   }
 
+  @Logging
   @Override
   public Optional<UserDto> deleteUser(Long id) throws NotFoundException {
     User user = userRepository.findById(id).orElse(null);
@@ -93,6 +99,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(modelMapper.map(user, UserDto.class));
   }
 
+  @Logging
   @Override
   public Optional<ShareDto> buyShare(Long userId, Long shareId) throws NotFoundException {
     User user = userRepository.findById(userId).orElse(null);
@@ -108,6 +115,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(modelMapper.map(share, ShareDto.class));
   }
 
+  @Logging
   @Override
   public Optional<List<ShareDto>> getShares(Long id) throws NotFoundException {
     User user = userRepository.findById(id).orElse(null);
@@ -120,6 +128,8 @@ public class UserServiceImpl implements UserService {
     return Optional.of(Arrays.asList(modelMapper.map(user.getShares(), ShareDto[].class)));
   }
 
+  @Logging
+  @Override
   public Optional<ShareDto> sellShare(Long userId, Long shareId) throws NotFoundException {
     User user = userRepository.findById(userId).orElse(null);
     Share share = shareRepository.findById(shareId).orElse(null);
@@ -134,6 +144,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(modelMapper.map(share, ShareDto.class));
   }
 
+  @Logging
   @Override
   public Optional<List<UserShareDto>> getUsersSharesAndCompanies() throws NotFoundException {
     List<User> users = userRepository.findAll();
@@ -143,6 +154,7 @@ public class UserServiceImpl implements UserService {
     return Optional.of(Arrays.asList(modelMapper.map(users, UserShareDto[].class)));
   }
 
+  @Logging
   @Override
   public Optional<List<UserShareDto>> getUsersByCompanyAndSharePriceRange(Long companyId,
                                                                           Float minPrice,
