@@ -1,9 +1,11 @@
 package com.sharesapp.backend.controller;
 
+import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
 import com.sharesapp.backend.dto.user.UserShareDto;
+import com.sharesapp.backend.model.User;
 import com.sharesapp.backend.service.impl.UserServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,12 @@ public class UserController {
   @PostMapping
   public ResponseEntity<UserDto> createUser(@RequestBody CreateUser createUser) {
     return ResponseEntity.of(userService.createUser(createUser));
+  }
+
+  @PostMapping("/many")
+  public ResponseEntity<List<UserDto>> createManyShares(
+      @RequestBody List<CreateUser> createShare) {
+    return ResponseEntity.of(userService.createManyUsers(createShare));
   }
 
   @GetMapping("/{id}")

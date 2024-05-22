@@ -1,6 +1,7 @@
 package com.sharesapp.backend.service.impl;
 
 import com.sharesapp.backend.aspect.Logging;
+import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
@@ -50,6 +51,21 @@ public class UserServiceImpl implements UserService {
     User savedUser = userRepository.save(modelMapper.map(createUser, User.class));
     cache.clear();
     return Optional.of(modelMapper.map(savedUser, UserDto.class));
+  }
+
+  @Logging
+  @Override
+  public Optional<List<UserDto>> createManyUsers(List<CreateUser> createUsers)
+      throws BadRequestException {
+    if (createUsers.stream()
+        .anyMatch(u -> (u.getFirstName().isEmpty() || u.getLastName().isEmpty()))) {
+      throw new BadRequestException("Wrong shares or its name");
+    }
+    List<User> users =
+        createUsers.stream().map(u -> (userRepository.save(modelMapper.map(u, User.class))))
+            .toList();
+    users.forEach(s -> cache.put(s.getId(), s));
+    return Optional.of(Arrays.asList(modelMapper.map(users, UserDto[].class)));
   }
 
   @Logging

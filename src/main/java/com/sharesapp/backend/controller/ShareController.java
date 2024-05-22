@@ -31,6 +31,12 @@ public class ShareController {
     return ResponseEntity.of(shareService.createShare(createShare));
   }
 
+  @PostMapping("/many")
+  public ResponseEntity<List<ShareDto>> createManyShares(
+      @RequestBody List<CreateShare> createShare) {
+    return ResponseEntity.of(shareService.createManyShares(createShare));
+  }
+
   @GetMapping("/{id}")
   public ResponseEntity<ShareDto> getShare(@PathVariable Long id) {
     return ResponseEntity.of(shareService.getById(id));

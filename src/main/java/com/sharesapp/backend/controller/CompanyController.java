@@ -1,6 +1,7 @@
 package com.sharesapp.backend.controller;
 
 import com.sharesapp.backend.dto.CompanyDto;
+import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.service.impl.CompanyServiceImpl;
 import java.util.List;
@@ -28,6 +29,12 @@ public class CompanyController {
   @PostMapping
   public ResponseEntity<CompanyDto> createCompany(@RequestBody CompanyDto companyDto) {
     return ResponseEntity.of(companyService.createCompany(companyDto));
+  }
+
+  @PostMapping("/many")
+  public ResponseEntity<List<CompanyDto>> createManyCompanies(
+      @RequestBody List<CompanyDto> createCompanies) {
+    return ResponseEntity.of(companyService.createManyCompanies(createCompanies));
   }
 
   @GetMapping("/{id}")

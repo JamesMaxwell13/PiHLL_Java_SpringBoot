@@ -23,13 +23,12 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class ShareServiceImpl implements ShareService {
+  private static final String SHARE_ERROR_MESSAGE = "There is no share with id = ";
+  private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
   private final ShareRepository shareRepository;
   private final CompanyRepository companyRepository;
   private final GenericCache<Long, Share> cache;
   private final ModelMapper modelMapper;
-
-  private static final String SHARE_ERROR_MESSAGE = "There is no share with id = ";
-  private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
 
 
   @Autowired
@@ -58,6 +57,21 @@ public class ShareServiceImpl implements ShareService {
     Share savedShare = shareRepository.save(share);
     cache.clear();
     return Optional.of(modelMapper.map(savedShare, ShareDto.class));
+  }
+
+  @Logging
+  @Override
+  public Optional<List<ShareDto>> createManyShares(List<CreateShare> createShares)
+      throws BadRequestException {
+    if (createShares.stream().anyMatch(s -> (s.getCompanyId() == null || s.getSymbol().isEmpty()
+        || s.getLastSalePrice() == null))) {
+      throw new BadRequestException("Wrong shares or its name");
+    }
+    List<Share> shares =
+        createShares.stream().map(s -> (shareRepository.save(modelMapper.map(s, Share.class))))
+            .toList();
+    shares.forEach(s -> cache.put(s.getId(), s));
+    return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
   }
 
   @Logging

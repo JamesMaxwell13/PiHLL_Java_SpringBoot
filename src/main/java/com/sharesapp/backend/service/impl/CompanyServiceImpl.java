@@ -20,11 +20,10 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class CompanyServiceImpl implements CompanyService {
+  private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
   private final CompanyRepository companyRepository;
   private final GenericCache<Long, Company> cache;
   private final ModelMapper modelMapper;
-
-  private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
 
   @Autowired
   public CompanyServiceImpl(CompanyRepository companyRepository, GenericCache<Long, Company> cache,
@@ -43,6 +42,21 @@ public class CompanyServiceImpl implements CompanyService {
     Company savedCompany = companyRepository.save(modelMapper.map(companyDto, Company.class));
     cache.clear();
     return Optional.of(modelMapper.map(savedCompany, CompanyDto.class));
+  }
+
+  @Logging
+  @Override
+  public Optional<List<CompanyDto>> createManyCompanies(List<CompanyDto> createCompanies)
+      throws BadRequestException {
+    if (createCompanies.stream().anyMatch(c -> c.getName().isEmpty())) {
+      throw new BadRequestException("Wrong shares or its name");
+    }
+    List<Company> companies =
+        createCompanies.stream()
+            .map(c -> (companyRepository.save(modelMapper.map(c, Company.class))))
+            .toList();
+    companies.forEach(s -> cache.put(s.getId(), s));
+    return Optional.of(Arrays.asList(modelMapper.map(companies, CompanyDto[].class)));
   }
 
   @Logging
