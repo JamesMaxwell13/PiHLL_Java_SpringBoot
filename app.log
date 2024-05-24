@@ -1,2 +1,2 @@
-18:19:41.345 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
-18:19:41.605 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed
+17:59:02.807 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+18:00:30.004 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed

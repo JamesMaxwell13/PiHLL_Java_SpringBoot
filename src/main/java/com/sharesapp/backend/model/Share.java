@@ -57,8 +57,4 @@ public class Share {
   @ManyToOne
   @JoinColumn(name = "company_id", nullable = false)
   private Company company = new Company();
-
-  public void setCompanyId(Long companyId) {
-    this.company.setId(companyId);
-  }
 }

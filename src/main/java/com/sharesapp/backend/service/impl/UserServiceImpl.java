@@ -1,7 +1,6 @@
 package com.sharesapp.backend.service.impl;
 
 import com.sharesapp.backend.aspect.Logging;
-import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
@@ -25,13 +24,12 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+  private static final String USER_ERROR_MESSAGE = "There is no user with id = ";
+  private static final String USER_LIST_ERROR_MESSAGE = "There are no users";
   private final UserRepository userRepository;
   private final ShareRepository shareRepository;
   private final GenericCache<Long, User> cache;
   private final ModelMapper modelMapper;
-
-  private static final String USER_ERROR_MESSAGE = "There is no user with id = ";
-  private static final String USER_LIST_ERROR_MESSAGE = "There are no users";
 
   @Autowired
   public UserServiceImpl(UserRepository userRepository, ShareRepository shareRepository,
@@ -45,7 +43,8 @@ public class UserServiceImpl implements UserService {
   @Logging
   @Override
   public Optional<UserDto> createUser(CreateUser createUser) throws BadRequestException {
-    if (createUser.getFirstName().isEmpty() || createUser.getLastName().isEmpty()) {
+    if (Optional.ofNullable(createUser.getFirstName()).isEmpty()
+        || Optional.ofNullable(createUser.getLastName()).isEmpty()) {
       throw new BadRequestException("Wrong user name");
     }
     User savedUser = userRepository.save(modelMapper.map(createUser, User.class));
@@ -58,8 +57,9 @@ public class UserServiceImpl implements UserService {
   public Optional<List<UserDto>> createManyUsers(List<CreateUser> createUsers)
       throws BadRequestException {
     if (createUsers.stream()
-        .anyMatch(u -> (u.getFirstName().isEmpty() || u.getLastName().isEmpty()))) {
-      throw new BadRequestException("Wrong shares or its name");
+        .anyMatch(u -> (Optional.ofNullable(u.getFirstName()).isEmpty()
+            || Optional.ofNullable(u.getLastName()).isEmpty()))) {
+      throw new BadRequestException("Wrong users or its name");
     }
     List<User> users =
         createUsers.stream().map(u -> (userRepository.save(modelMapper.map(u, User.class))))
@@ -93,7 +93,8 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<UserDto> updateUser(Long id, UserDto userDto) throws BadRequestException {
     User user = userRepository.findById(id).orElse(null);
-    if (user == null || userDto.getFirstName().isEmpty() || userDto.getLastName().isEmpty()) {
+    if (user == null || Optional.ofNullable(userDto.getFirstName()).isEmpty()
+        || Optional.ofNullable(userDto.getLastName()).isEmpty()) {
       throw new BadRequestException("Wrong user name or there is no such user");
     }
     cache.remove(id);
