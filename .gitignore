@@ -38,3 +38,5 @@ build/
 .mvn
 mvnw.cmd
 mvnw
+
+app.log
