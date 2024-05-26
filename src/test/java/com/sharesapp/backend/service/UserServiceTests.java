@@ -1,6 +1,7 @@
 package com.sharesapp.backend.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyFloat;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -14,6 +15,8 @@ import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
 import com.sharesapp.backend.dto.user.UserShareDto;
+import com.sharesapp.backend.exceptions.BadRequestException;
+import com.sharesapp.backend.exceptions.NotFoundException;
 import com.sharesapp.backend.model.Company;
 import com.sharesapp.backend.model.Share;
 import com.sharesapp.backend.model.User;
@@ -23,10 +26,12 @@ import com.sharesapp.backend.repository.UserRepository;
 import com.sharesapp.backend.service.impl.UserServiceImpl;
 import com.sharesapp.backend.utils.cache.GenericCache;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,9 +66,9 @@ class UserServiceTests {
 
   @BeforeEach
   public void setUp() {
+    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     share = new Share(1L, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
         Instant.parse("2007-12-03T10:15:30.00Z"), "Symbol", new HashSet<>(), null);
-    modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
     user = new User(1L, "First Name", "Last Name", "Email",
         "Phone Number", "Password", new HashSet<>());
     createUser = modelMapper.map(user, CreateUser.class);
@@ -88,6 +93,22 @@ class UserServiceTests {
   }
 
   @Test
+  void testCreateUserThrowFirstName() {
+    when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
+
+    createUser.setFirstName(null);
+    assertThrows(BadRequestException.class, () -> userService.createUser(createUser));
+  }
+
+  @Test
+  void testCreateUserThrowLastName() {
+    when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
+
+    createUser.setLastName(null);
+    assertThrows(BadRequestException.class, () -> userService.createUser(createUser));
+  }
+
+  @Test
   void testCreateManyUsers() {
     when(cache.get(1L)).thenReturn(Optional.ofNullable(user));
     when(userRepository.save(any(User.class))).thenReturn(user);
@@ -106,6 +127,22 @@ class UserServiceTests {
     assertTrue(cacheUser.isPresent());
     assertEquals(user, cacheUser.get());
     verify(cache, times(1)).clear();
+  }
+
+  @Test
+  void testCreateManyUserThrowFirstName() {
+    user.setFirstName(null);
+    List<CreateUser> users = Stream.of(user, user, user).map(u ->
+        modelMapper.map(u, CreateUser.class)).toList();
+    assertThrows(BadRequestException.class, () -> userService.createManyUsers(users));
+  }
+
+  @Test
+  void testCreateManyUserThrowLastName() {
+    user.setLastName(null);
+    List<CreateUser> users = Stream.of(user, user, user).map(u ->
+        modelMapper.map(u, CreateUser.class)).toList();
+    assertThrows(BadRequestException.class, () -> userService.createManyUsers(users));
   }
 
   @Test
@@ -133,6 +170,12 @@ class UserServiceTests {
   }
 
   @Test
+  void testGetAllUsersThrow() {
+    when(userRepository.findAll()).thenReturn(Collections.emptyList());
+    assertThrows(NotFoundException.class, () -> userService.getAllUsers());
+  }
+
+  @Test
   void testUpdateUser() {
     when(userRepository.save(any(User.class))).thenReturn(user);
     when(cache.get(1L)).thenReturn(Optional.ofNullable(user));
@@ -142,10 +185,44 @@ class UserServiceTests {
 
     assertTrue(result.isPresent());
     assertEquals(modelMapper.map(user, UserDto.class), result.get());
-    verify(userRepository, times(1)).deleteById(1L);
     verify(userRepository, times(1)).save(any(User.class));
     verify(cache, times(1)).remove(1L);
     verify(cache, times(1)).put(1L, user);
+  }
+
+  @Test
+  void testUpdateUserThrowFirstName() {
+    when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
+    when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
+    when(cache.get(1L)).thenReturn(Optional.ofNullable(user));
+
+    Long id = user.getId();
+    user.setFirstName(null);
+    UserDto userDto = modelMapper.map(user, UserDto.class);
+    assertThrows(BadRequestException.class, () -> userService.updateUser(id, userDto));
+  }
+
+  @Test
+  void testUpdateUserThrowLastName() {
+    when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
+    when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
+    when(cache.get(1L)).thenReturn(Optional.ofNullable(user));
+
+    Long id = user.getId();
+    user.setLastName(null);
+    UserDto userDto = modelMapper.map(user, UserDto.class);
+    assertThrows(BadRequestException.class, () -> userService.updateUser(id, userDto));
+  }
+
+  @Test
+  void testUpdateUserThrowNull() {
+    when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
+    when(userRepository.findById(1L)).thenReturn(Optional.empty());
+    when(cache.get(1L)).thenReturn(Optional.empty());
+
+    Long id = user.getId();
+    UserDto userDto = modelMapper.map(user, UserDto.class);
+    assertThrows(BadRequestException.class, () -> userService.updateUser(id, userDto));
   }
 
   @Test
@@ -163,6 +240,29 @@ class UserServiceTests {
     assertEquals(modelMapper.map(user, UserDto.class), result.get());
     verify(userRepository, times(1)).deleteById(1L);
     verify(cache, times(1)).remove(1L);
+  }
+
+  @Test
+  void testDeleteUserThrow() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    when(cache.get(anyLong())).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.deleteUser(1L));
+
+    verify(userRepository, times(1)).findById(1L);
+    verify(cache, times(1)).get(1L);
+  }
+
+  @Test
+  void testDeleteUserThrowRepository() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    assertThrows(NotFoundException.class, () -> userService.getById(1L));
+  }
+
+  @Test
+  void testDeleteUserThrowCache() {
+    when(cache.get(1L)).thenReturn(Optional.empty());
+    assertThrows(NotFoundException.class, () -> userService.getById(1L));
   }
 
   @Test
@@ -184,6 +284,28 @@ class UserServiceTests {
   }
 
   @Test
+  void testSellShareThrow() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    when(cache.get(anyLong())).thenReturn(Optional.empty());
+    when(shareRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.sellShare(1L, 1L));
+
+    verify(cache, times(1)).get(1L);
+  }
+
+  @Test
+  void testSellShareThrowNoShare() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+    when(cache.get(anyLong())).thenReturn(Optional.ofNullable(user));
+    when(shareRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.sellShare(1L, 1L));
+
+    verify(cache, times(1)).get(1L);
+  }
+
+  @Test
   void testBuyShare() {
     when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
     when(userRepository.save(any(User.class))).thenReturn(user);
@@ -200,6 +322,28 @@ class UserServiceTests {
   }
 
   @Test
+  void testBuyShareThrow() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    when(cache.get(anyLong())).thenReturn(Optional.empty());
+    when(shareRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.buyShare(1L, 1L));
+
+    verify(cache, times(1)).get(1L);
+  }
+
+  @Test
+  void testBuyShareThrowNoShare() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+    when(cache.get(anyLong())).thenReturn(Optional.ofNullable(user));
+    when(shareRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.buyShare(1L, 1L));
+
+    verify(cache, times(1)).get(1L);
+  }
+
+  @Test
   void testGetShares() {
     when(userRepository.save(any(User.class))).thenReturn(user);
     when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
@@ -213,6 +357,26 @@ class UserServiceTests {
     assertTrue(result.isPresent());
     assertEquals(Collections.singletonList(modelMapper.map(share, ShareDto.class)), result.get());
     verify(userRepository, times(1)).save(any(User.class));
+  }
+
+  @Test
+  void testGetSharesThrow() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+    when(cache.get(anyLong())).thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.getShares(1L));
+
+    verify(userRepository, times(1)).findById(1L);
+    verify(cache, times(1)).get(1L);
+  }
+
+  @Test
+  void testGetSharesThrowNoShares() {
+    when(userRepository.findById(anyLong())).thenReturn(Optional.ofNullable(user));
+    when(cache.get(anyLong())).thenReturn(Optional.ofNullable(user));
+
+    assertThrows(NotFoundException.class, () -> userService.getShares(1L));
+    verify(cache, times(1)).get(1L);
   }
 
   @Test
@@ -233,8 +397,17 @@ class UserServiceTests {
   }
 
   @Test
+  void testGetUsersSharesAndCompaniesThrow() {
+    when(userRepository.findAll()).thenReturn(new ArrayList<>());
+    when(userRepository.save(any(User.class))).thenReturn(user);
+
+    assertThrows(NotFoundException.class, () -> userService.getUsersSharesAndCompanies());
+  }
+
+  @Test
   void testGetUsersByCompanyAndSharePriceRange() {
-    when(userRepository.findUsersByCompanyAndSharePriceRange(anyLong(), anyFloat(), anyFloat())).thenReturn(List.of(user));
+    when(userRepository.findUsersByCompanyAndSharePriceRange(anyLong(), anyFloat(),
+        anyFloat())).thenReturn(List.of(user));
     when(userRepository.save(any(User.class))).thenReturn(user);
 
     Company company = new Company(1L, "Company Name", 1D, "Adress", "Website", new HashSet<>());
@@ -251,5 +424,14 @@ class UserServiceTests {
     assertEquals(Collections.singletonList(modelMapper.map(user, UserShareDto.class)),
         result.get());
     verify(userRepository, times(1)).save(any(User.class));
+  }
+
+  @Test
+  void testGetUsersByCompanyAndSharePriceRangeThrow() {
+    when(userRepository.findAll()).thenReturn(new ArrayList<>());
+    when(userRepository.save(any(User.class))).thenReturn(user);
+
+    assertThrows(NotFoundException.class,
+        () -> userService.getUsersByCompanyAndSharePriceRange(1L, 1.0f, 1.0f));
   }
 }

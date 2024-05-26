@@ -99,7 +99,6 @@ public class UserServiceImpl implements UserService {
       throw new BadRequestException("Wrong user name or there is no such user");
     }
     cache.remove(id);
-    userRepository.deleteById(id);
     userDto.setId(id);
     User updatedUser = userRepository.save(modelMapper.map(userDto, User.class));
     cache.put(id, updatedUser);

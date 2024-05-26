@@ -41,6 +41,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
     Company savedCompany = companyRepository.save(modelMapper.map(companyDto, Company.class));
     cache.clear();
+    cache.put(savedCompany.getId(), savedCompany);
     return Optional.of(modelMapper.map(savedCompany, CompanyDto.class));
   }
 
@@ -55,6 +56,7 @@ public class CompanyServiceImpl implements CompanyService {
         createCompanies.stream()
             .map(c -> (companyRepository.save(modelMapper.map(c, Company.class))))
             .toList();
+    cache.clear();
     companies.forEach(s -> cache.put(s.getId(), s));
     return Optional.of(Arrays.asList(modelMapper.map(companies, CompanyDto[].class)));
   }
@@ -84,8 +86,8 @@ public class CompanyServiceImpl implements CompanyService {
   @Override
   public Optional<CompanyDto> updateCompany(Long id, CompanyDto companyDto)
       throws BadRequestException {
-    Company company = companyRepository.findById(id).orElse(null);
-    if (company == null || companyDto.getName() == null || companyDto.getName().isEmpty()) {
+    Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
+    if (company == null || companyDto.getName().isEmpty()) {
       throw new BadRequestException("Wrong company name or there is no such company");
     }
     cache.remove(id);
@@ -98,7 +100,7 @@ public class CompanyServiceImpl implements CompanyService {
   @Logging
   @Override
   public Optional<CompanyDto> deleteCompany(Long id) throws NotFoundException {
-    Company company = companyRepository.findById(id).orElse(null);
+    Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
     if (company == null) {
       throw new NotFoundException(COMPANY_ERROR_MESSAGE, id);
     }

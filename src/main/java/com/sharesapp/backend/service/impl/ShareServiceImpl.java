@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class ShareServiceImpl implements ShareService {
   private static final String SHARE_ERROR_MESSAGE = "There is no share with id = ";
-  private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
+  private static final String COMPANY_ERROR_MESSAGE = "There is no such company";
   private final ShareRepository shareRepository;
   private final CompanyRepository companyRepository;
   private final GenericCache<Long, Share> cache;
@@ -44,13 +44,14 @@ public class ShareServiceImpl implements ShareService {
   @Override
   public Optional<ShareDto> createShare(CreateShare createShare) throws BadRequestException {
     Share share = modelMapper.map(createShare, Share.class);
-    Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
-    if (createShare.getCompanyId() == null || createShare.getLastSalePrice() == null
+    Company company = companyRepository.findById(createShare.getCompanyId()).orElse(null);
+    if (Optional.ofNullable(createShare.getCompanyId()).isEmpty()
+        || Optional.ofNullable(createShare.getLastSalePrice()).isEmpty()
         || createShare.getSymbol().isEmpty()) {
       throw new BadRequestException("Wrong share information");
     }
     if (company == null) {
-      throw new NotFoundException(COMPANY_ERROR_MESSAGE, share.getCompany().getId());
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE + "with id = ", createShare.getCompanyId());
     }
     company.addShare(share);
     companyRepository.save(company);
@@ -64,13 +65,22 @@ public class ShareServiceImpl implements ShareService {
   @Override
   public Optional<List<ShareDto>> createManyShares(List<CreateShare> createShares)
       throws BadRequestException {
-    if (createShares.stream().anyMatch(s -> (s.getCompanyId() == null || s.getSymbol().isEmpty()
-        || s.getLastSalePrice() == null))) {
+    if (createShares.stream()
+        .anyMatch(s -> (Optional.ofNullable(s.getCompanyId()).isEmpty() || s.getSymbol().isEmpty()
+            || Optional.ofNullable(s.getLastSalePrice()).isEmpty()))) {
       throw new BadRequestException("Wrong shares or its name");
     }
+    if (createShares.stream()
+        .anyMatch(s -> (companyRepository.findById(s.getCompanyId()).isEmpty()))) {
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE);
+    }
+    createShares.forEach(s -> companyRepository.save(
+        companyRepository.findById(s.getCompanyId()).get()
+            .addShare(modelMapper.map(s, Share.class))));
     List<Share> shares =
         createShares.stream().map(s -> (shareRepository.save(modelMapper.map(s, Share.class))))
             .toList();
+    cache.clear();
     shares.forEach(s -> cache.put(s.getId(), s));
     return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
   }
@@ -111,16 +121,16 @@ public class ShareServiceImpl implements ShareService {
   @Override
   public Optional<ShareDto> updateShare(Long id, ShareDto shareDto) throws NotFoundException {
     Share share = cache.get(id).orElseGet(() -> shareRepository.findById(id).orElse(null));
-    if (share == null || shareDto.getLastSalePrice() == null || shareDto.getSymbol().isEmpty()) {
+    if (share == null || Optional.ofNullable(shareDto.getLastSalePrice()).isEmpty()
+        || shareDto.getSymbol().isEmpty()) {
       throw new BadRequestException("Wrong share information or this share doesn't exist");
     }
     Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
     if (company == null) {
-      throw new NotFoundException(COMPANY_ERROR_MESSAGE, share.getCompany().getId());
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE);
     }
     cache.remove(id);
     company.removeShare(share.getId());
-    companyRepository.save(company);
     shareDto.setId(id);
     Share updatedShare = shareRepository.save(modelMapper.map(shareDto, Share.class));
     company.addShare(updatedShare);
@@ -138,7 +148,7 @@ public class ShareServiceImpl implements ShareService {
     }
     Company company = companyRepository.findById(share.getCompany().getId()).orElse(null);
     if (company == null) {
-      throw new NotFoundException(COMPANY_ERROR_MESSAGE, share.getCompany().getId());
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE);
     }
     company.removeShare(share.getId());
     companyRepository.save(company);
