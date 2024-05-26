@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
     }
     User savedUser = userRepository.save(modelMapper.map(createUser, User.class));
     cache.clear();
+    cache.put(savedUser.getId(), savedUser);
     return Optional.of(modelMapper.map(savedUser, UserDto.class));
   }
 
@@ -56,14 +57,14 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<List<UserDto>> createManyUsers(List<CreateUser> createUsers)
       throws BadRequestException {
-    if (createUsers.stream()
-        .anyMatch(u -> (Optional.ofNullable(u.getFirstName()).isEmpty()
-            || Optional.ofNullable(u.getLastName()).isEmpty()))) {
+    if (createUsers.stream().anyMatch(u -> (Optional.ofNullable(u.getFirstName()).isEmpty()
+        || Optional.ofNullable(u.getLastName()).isEmpty()))) {
       throw new BadRequestException("Wrong users or its name");
     }
     List<User> users =
         createUsers.stream().map(u -> (userRepository.save(modelMapper.map(u, User.class))))
             .toList();
+    cache.clear();
     users.forEach(s -> cache.put(s.getId(), s));
     return Optional.of(Arrays.asList(modelMapper.map(users, UserDto[].class)));
   }
@@ -92,12 +93,13 @@ public class UserServiceImpl implements UserService {
   @Logging
   @Override
   public Optional<UserDto> updateUser(Long id, UserDto userDto) throws BadRequestException {
-    User user = userRepository.findById(id).orElse(null);
+    User user = cache.get(id).orElseGet(() -> userRepository.findById(id).orElse(null));
     if (user == null || Optional.ofNullable(userDto.getFirstName()).isEmpty()
         || Optional.ofNullable(userDto.getLastName()).isEmpty()) {
       throw new BadRequestException("Wrong user name or there is no such user");
     }
     cache.remove(id);
+    userRepository.deleteById(id);
     userDto.setId(id);
     User updatedUser = userRepository.save(modelMapper.map(userDto, User.class));
     cache.put(id, updatedUser);
@@ -107,7 +109,7 @@ public class UserServiceImpl implements UserService {
   @Logging
   @Override
   public Optional<UserDto> deleteUser(Long id) throws NotFoundException {
-    User user = userRepository.findById(id).orElse(null);
+    User user = cache.get(id).orElseGet(() -> userRepository.findById(id).orElse(null));
     if (user == null) {
       throw new NotFoundException(USER_ERROR_MESSAGE, id);
     }
@@ -119,7 +121,7 @@ public class UserServiceImpl implements UserService {
   @Logging
   @Override
   public Optional<ShareDto> buyShare(Long userId, Long shareId) throws NotFoundException {
-    User user = userRepository.findById(userId).orElse(null);
+    User user = cache.get(userId).orElseGet(() -> userRepository.findById(userId).orElse(null));
     Share share = shareRepository.findById(shareId).orElse(null);
     if (user == null) {
       throw new NotFoundException(USER_ERROR_MESSAGE, userId);
@@ -135,7 +137,7 @@ public class UserServiceImpl implements UserService {
   @Logging
   @Override
   public Optional<List<ShareDto>> getShares(Long id) throws NotFoundException {
-    User user = userRepository.findById(id).orElse(null);
+    User user = cache.get(id).orElseGet(() -> userRepository.findById(id).orElse(null));
     if (user == null) {
       throw new NotFoundException(USER_ERROR_MESSAGE, id);
     }
@@ -148,7 +150,7 @@ public class UserServiceImpl implements UserService {
   @Logging
   @Override
   public Optional<ShareDto> sellShare(Long userId, Long shareId) throws NotFoundException {
-    User user = userRepository.findById(userId).orElse(null);
+    User user = cache.get(userId).orElseGet(() -> userRepository.findById(userId).orElse(null));
     Share share = shareRepository.findById(shareId).orElse(null);
     if (user == null) {
       throw new NotFoundException(USER_ERROR_MESSAGE, userId);

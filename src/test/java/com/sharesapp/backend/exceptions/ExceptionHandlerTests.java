@@ -41,6 +41,16 @@ class ExceptionHandlerTests {
   }
 
   @Test
+  void testHandlerNotFoundExceptionId() {
+    MockHttpServletRequest request = new MockHttpServletRequest();
+    WebRequest webRequest = new ServletWebRequest(request);
+    ResponseEntity<ExceptionParameter> result =
+        exceptionHandler.notFound(new NotFoundException("Test", 1L), webRequest);
+    assertEquals("Test" + 1L, Objects.requireNonNull(result.getBody()).getMessage());
+    assertEquals(HttpStatus.NOT_FOUND, result.getStatusCode());
+  }
+
+  @Test
   void testHandlerInternalServiceException() {
     MockHttpServletRequest request = new MockHttpServletRequest();
     WebRequest webRequest = new ServletWebRequest(request);

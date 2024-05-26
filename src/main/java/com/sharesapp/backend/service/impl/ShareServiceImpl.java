@@ -56,6 +56,7 @@ public class ShareServiceImpl implements ShareService {
     companyRepository.save(company);
     Share savedShare = shareRepository.save(share);
     cache.clear();
+    cache.put(savedShare.getId(), savedShare);
     return Optional.of(modelMapper.map(savedShare, ShareDto.class));
   }
 
@@ -109,7 +110,7 @@ public class ShareServiceImpl implements ShareService {
   @Logging
   @Override
   public Optional<ShareDto> updateShare(Long id, ShareDto shareDto) throws NotFoundException {
-    Share share = shareRepository.findById(id).orElse(null);
+    Share share = cache.get(id).orElseGet(() -> shareRepository.findById(id).orElse(null));
     if (share == null || shareDto.getLastSalePrice() == null || shareDto.getSymbol().isEmpty()) {
       throw new BadRequestException("Wrong share information or this share doesn't exist");
     }
@@ -131,7 +132,7 @@ public class ShareServiceImpl implements ShareService {
   @Logging
   @Override
   public Optional<ShareDto> deleteShare(Long id) throws NotFoundException {
-    Share share = shareRepository.findById(id).orElse(null);
+    Share share = cache.get(id).orElseGet(() -> shareRepository.findById(id).orElse(null));
     if (share == null) {
       throw new NotFoundException(SHARE_ERROR_MESSAGE, id);
     }

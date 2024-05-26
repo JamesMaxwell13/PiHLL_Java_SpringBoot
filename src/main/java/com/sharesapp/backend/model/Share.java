@@ -13,13 +13,17 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "shares")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Share {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

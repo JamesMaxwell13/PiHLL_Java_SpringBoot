@@ -11,13 +11,17 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "companies")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Company {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
