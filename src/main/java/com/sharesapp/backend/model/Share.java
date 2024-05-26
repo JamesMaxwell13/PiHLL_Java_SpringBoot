@@ -13,13 +13,17 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "shares")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Share {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,8 +61,4 @@ public class Share {
   @ManyToOne
   @JoinColumn(name = "company_id", nullable = false)
   private Company company = new Company();
-
-  public void setCompanyId(Long companyId) {
-    this.company.setId(companyId);
-  }
 }

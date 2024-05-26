@@ -11,13 +11,17 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "companies")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Company {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,9 +46,10 @@ public class Company {
   @ToString.Exclude
   private Set<Share> shares = new HashSet<>();
 
-  public void addShare(Share share) {
+  public Company addShare(Share share) {
     shares.add(share);
     share.setCompany(this);
+    return this;
   }
 
   public void removeShare(Long shareId) {

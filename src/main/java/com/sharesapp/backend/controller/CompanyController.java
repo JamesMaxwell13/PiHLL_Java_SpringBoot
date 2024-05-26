@@ -1,7 +1,6 @@
 package com.sharesapp.backend.controller;
 
 import com.sharesapp.backend.dto.CompanyDto;
-import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.service.impl.CompanyServiceImpl;
 import java.util.List;
