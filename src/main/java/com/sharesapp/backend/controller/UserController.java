@@ -1,5 +1,6 @@
 package com.sharesapp.backend.controller;
 
+import com.sharesapp.backend.aspect.annotation.RequestCounting;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestCounting
 @RequestMapping("/api/user")
 public class UserController {
   private final UserServiceImpl userService;

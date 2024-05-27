@@ -1,5 +1,6 @@
 package com.sharesapp.backend.controller;
 
+import com.sharesapp.backend.aspect.annotation.RequestCounting;
 import com.sharesapp.backend.dto.CompanyDto;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.service.impl.CompanyServiceImpl;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestCounting
 @RequestMapping("/api/company")
 public class CompanyController {
   private final CompanyServiceImpl companyService;

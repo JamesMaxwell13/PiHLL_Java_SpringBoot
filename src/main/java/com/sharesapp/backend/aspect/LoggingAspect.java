@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Slf4j
 public class LoggingAspect {
-  @Pointcut("@annotation(com.sharesapp.backend.aspect.Logging)")
+  @Pointcut("@annotation(com.sharesapp.backend.aspect.annotation.Logging)")
   private void serviceLogging() {}
 
   @Around("serviceLogging()")

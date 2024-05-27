@@ -1,6 +1,6 @@
 package com.sharesapp.backend.service.impl;
 
-import com.sharesapp.backend.aspect.Logging;
+import com.sharesapp.backend.aspect.annotation.Logging;
 import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.dto.user.CreateUser;
 import com.sharesapp.backend.dto.user.UserDto;

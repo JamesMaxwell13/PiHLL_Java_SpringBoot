@@ -1,6 +1,6 @@
 package com.sharesapp.backend.service.impl;
 
-import com.sharesapp.backend.aspect.Logging;
+import com.sharesapp.backend.aspect.annotation.Logging;
 import com.sharesapp.backend.dto.CompanyDto;
 import com.sharesapp.backend.dto.share.CreateShare;
 import com.sharesapp.backend.dto.share.ShareDto;
