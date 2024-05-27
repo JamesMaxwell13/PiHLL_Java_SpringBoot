@@ -26,21 +26,13 @@ class MyCacheTests {
     Object value = "value";
     cache.put(key, value);
     Optional<Object> result = cache.get(key);
-    assertEquals(value, result.get());
-  }
-
-  @Test
-  void put() {
-    Long key = 1L;
-    Object value = "value";
-    cache.put(key, value);
-    Optional<Object> result = cache.get(key);
+    assertTrue(result.isPresent());
     assertEquals(value, result.get());
   }
 
   @Test
   void putMaxCapacity() {
-    Long key;
+    long key;
     Object value;
 
     for (int i = 1; i <= MAX_CACHE_SIZE; i++) {
