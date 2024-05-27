@@ -11,8 +11,9 @@ public class RequestCounterServiceImpl implements RequestCounterService {
 
   @Logging
   @Override
-  public void increment() {
+  public Integer increment() {
     count.incrementAndGet();
+    return count.get();
   }
 
   @Logging
