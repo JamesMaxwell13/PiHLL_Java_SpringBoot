@@ -25,7 +25,6 @@ class ExceptionHandlerTests {
     WebRequest webRequest = new ServletWebRequest(request);
     ResponseEntity<ExceptionParameter> result =
         exceptionHandler.badRequest(new BadRequestException("Test"), webRequest);
-
     assertEquals("Test", Objects.requireNonNull(result.getBody()).getMessage());
     assertEquals(HttpStatus.BAD_REQUEST, result.getStatusCode());
   }

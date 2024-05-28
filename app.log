@@ -1,8 +1,10 @@
-01:28:34.855 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
-01:29:10.628 INFO  c.s.backend.aspect.LoggingAspect - Called method getCount() with args: []
-01:29:10.628 INFO  c.s.backend.aspect.LoggingAspect - Method getCount is returned with value: 0
-01:29:18.963 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-01:29:18.964 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
-01:29:18.985 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
-01:29:19.338 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=4, name=erat, capitalize=45600.87, adress=Minsk, st.gikalo,9, website=erat.by), CompanyDto(id=5, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=6, name=New York Times, capitalize=4.444444444487E10, adress=New York, st.Washington,54a, website=ny-times.com), CompanyDto(id=7, name=New York Times, capitalize=4.444444444487E10, adress=New York, st.Washington,54a, website=ny-times.com)]]
-01:30:18.539 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed
+10:19:35.820 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+10:19:47.931 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+10:19:47.931 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
+10:19:47.949 INFO  c.s.backend.aspect.LoggingAspect - Called method createManyShares() with args: [[CreateShare(companyId=4), CreateShare(companyId=6)]]
+10:19:48.339 INFO  c.s.backend.aspect.LoggingAspect - Method createManyShares is returned with value: Optional[[ShareDto(id=9, prevClosePrice=5.0, highPrice=4.0, lowPrice=3.0, openPrice=4.5, lastSalePrice=4.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SH), ShareDto(id=10, prevClosePrice=6.0, highPrice=5.0, lowPrice=4.0, openPrice=5.5, lastSalePrice=5.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KL)]]
+10:20:22.322 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+10:20:22.322 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 2
+10:20:22.327 INFO  c.s.backend.aspect.LoggingAspect - Called method createShare() with args: [CreateShare(companyId=4)]
+10:20:22.348 INFO  c.s.backend.aspect.LoggingAspect - Method createShare is returned with value: Optional[ShareDto(id=12, prevClosePrice=5.0, highPrice=4.0, lowPrice=3.0, openPrice=4.5, lastSalePrice=4.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SH)]
+10:20:47.288 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed

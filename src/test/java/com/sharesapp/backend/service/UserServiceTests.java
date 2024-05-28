@@ -58,7 +58,7 @@ class UserServiceTests {
   @Mock
   private CompanyRepository companyRepository;
   @Mock
-  private GenericCache<Long, User> cache;
+  private GenericCache<Long, User> cache; 
   @InjectMocks
   private UserServiceImpl userService;
   @Spy
@@ -67,10 +67,10 @@ class UserServiceTests {
   @BeforeEach
   public void setUp() {
     modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-    share = new Share(1L, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-        Instant.parse("2007-12-03T10:15:30.00Z"), "Symbol", new HashSet<>(), null);
-    user = new User(1L, "First Name", "Last Name", "Email",
-        "Phone Number", "Password", new HashSet<>());
+    share = new Share(1L, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, Instant.parse("2007-12-03T10:15:30.00Z"),
+        "Symbol", new HashSet<>(), null);
+    user = new User(1L, "First Name", "Last Name", "Email", "Phone Number", "Password",
+        new HashSet<>());
     createUser = modelMapper.map(user, CreateUser.class);
   }
 
@@ -114,8 +114,7 @@ class UserServiceTests {
     when(userRepository.save(any(User.class))).thenReturn(user);
 
     List<User> users = List.of(user, user, user);
-    Optional<List<UserDto>>
-        result = userService.createManyUsers(
+    Optional<List<UserDto>> result = userService.createManyUsers(
         users.stream().map(u -> modelMapper.map(u, CreateUser.class)).toList());
 
     assertTrue(result.isPresent());
@@ -132,16 +131,16 @@ class UserServiceTests {
   @Test
   void testCreateManyUserThrowFirstName() {
     user.setFirstName(null);
-    List<CreateUser> users = Stream.of(user, user, user).map(u ->
-        modelMapper.map(u, CreateUser.class)).toList();
+    List<CreateUser> users =
+        Stream.of(user, user, user).map(u -> modelMapper.map(u, CreateUser.class)).toList();
     assertThrows(BadRequestException.class, () -> userService.createManyUsers(users));
   }
 
   @Test
   void testCreateManyUserThrowLastName() {
     user.setLastName(null);
-    List<CreateUser> users = Stream.of(user, user, user).map(u ->
-        modelMapper.map(u, CreateUser.class)).toList();
+    List<CreateUser> users =
+        Stream.of(user, user, user).map(u -> modelMapper.map(u, CreateUser.class)).toList();
     assertThrows(BadRequestException.class, () -> userService.createManyUsers(users));
   }
 

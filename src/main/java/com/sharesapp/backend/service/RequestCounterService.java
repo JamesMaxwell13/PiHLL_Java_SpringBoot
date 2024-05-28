@@ -1,7 +1,7 @@
 package com.sharesapp.backend.service;
 
 public interface RequestCounterService {
-  public Integer increment();
+  Integer increment();
 
-  public Integer getCount();
+  Integer getCount();
 }
