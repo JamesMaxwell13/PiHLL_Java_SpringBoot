@@ -14,6 +14,7 @@ import com.sharesapp.backend.service.ShareService;
 import com.sharesapp.backend.utils.cache.GenericCache;
 import jakarta.transaction.Transactional;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
@@ -71,18 +72,36 @@ public class ShareServiceImpl implements ShareService {
       throw new BadRequestException("Wrong shares or its name");
     }
     if (createShares.stream()
-        .anyMatch(s -> (companyRepository.findById(s.getCompanyId()).isEmpty()))) {
+        .anyMatch(s -> (companyRepository.findById(s.getCompanyId())).isEmpty())) {
       throw new NotFoundException(COMPANY_ERROR_MESSAGE);
     }
-    createShares.forEach(s -> companyRepository.save(
-        companyRepository.findById(s.getCompanyId()).get()
-            .addShare(modelMapper.map(s, Share.class))));
+//    createShares.forEach(s -> companyRepository.save(
+//        companyRepository.findById(s.getCompanyId()).get()
+//            .addShare(modelMapper.map(s, Share.class))));
+
+//    List<Company> companies = createShares.stream()
+//        .map(s -> companyRepository.findById(s.getCompanyId()).get()).toList();
+//    companies.forEach(
+//        c -> c.addShare(modelMapper.map(createShares.get(companies.indexOf(c)), Share.class)));
+//    companyRepository.saveAll(companies);
+//    List<Share> shares =
+//        createShares.stream().map(s -> modelMapper.map(s, Share.class))
+//            .toList();
+//    shareRepository.saveAll(shares);
+    createShares.forEach(s -> {
+      Company company = companyRepository.findById(s.getCompanyId()).orElse(null);
+      if (company != null) {
+        company.addShare(modelMapper.map(s, Share.class));
+        companyRepository.save(company);
+      }
+    });
     List<Share> shares =
-        createShares.stream().map(s -> (shareRepository.save(modelMapper.map(s, Share.class))))
+        createShares.stream().map(s -> modelMapper.map(s, Share.class))
             .toList();
+    List<Share> savedShares = shareRepository.saveAll(shares);
     cache.clear();
     shares.forEach(s -> cache.put(s.getId(), s));
-    return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
+    return Optional.of(Arrays.asList(modelMapper.map(savedShares, ShareDto[].class)));
   }
 
   @Logging
@@ -114,6 +133,7 @@ public class ShareServiceImpl implements ShareService {
     if (shares.isEmpty()) {
       throw new NotFoundException("There are no shares");
     }
+    shares.sort(Comparator.comparing(Share::getId));
     return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
   }
 

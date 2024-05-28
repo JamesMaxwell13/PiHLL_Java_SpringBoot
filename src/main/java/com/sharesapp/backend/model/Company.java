@@ -46,10 +46,9 @@ public class Company {
   @ToString.Exclude
   private Set<Share> shares = new HashSet<>();
 
-  public Company addShare(Share share) {
+  public void addShare(Share share) {
     shares.add(share);
     share.setCompany(this);
-    return this;
   }
 
   public void removeShare(Long shareId) {
