@@ -40,7 +40,7 @@ public class Company {
   private String website;
 
   @Column(name = "shares")
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(orphanRemoval = true)
   @JoinColumn(name = "share_id")
   @EqualsAndHashCode.Exclude
   @ToString.Exclude

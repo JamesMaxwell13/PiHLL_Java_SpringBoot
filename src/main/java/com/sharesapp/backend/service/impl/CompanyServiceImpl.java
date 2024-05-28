@@ -6,11 +6,14 @@ import com.sharesapp.backend.dto.share.ShareDto;
 import com.sharesapp.backend.exceptions.BadRequestException;
 import com.sharesapp.backend.exceptions.NotFoundException;
 import com.sharesapp.backend.model.Company;
+import com.sharesapp.backend.model.Share;
 import com.sharesapp.backend.repository.CompanyRepository;
 import com.sharesapp.backend.service.CompanyService;
 import com.sharesapp.backend.utils.cache.GenericCache;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
@@ -79,6 +82,7 @@ public class CompanyServiceImpl implements CompanyService {
     if (companies.isEmpty()) {
       throw new NotFoundException("There are no companies");
     }
+    companies.sort(Comparator.comparing(Company::getId));
     return Optional.of(Arrays.asList(modelMapper.map(companies, CompanyDto[].class)));
   }
 
@@ -120,6 +124,8 @@ public class CompanyServiceImpl implements CompanyService {
       throw new NotFoundException("There is no shares");
     }
     cache.put(id, company);
-    return Optional.of(Arrays.asList(modelMapper.map(company.getShares(), ShareDto[].class)));
+    List<Share> shares = new ArrayList<>(company.getShares());
+    shares.sort(Comparator.comparing(Share::getId));
+    return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
   }
 }

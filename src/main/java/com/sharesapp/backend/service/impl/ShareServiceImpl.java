@@ -75,25 +75,12 @@ public class ShareServiceImpl implements ShareService {
         .anyMatch(s -> (companyRepository.findById(s.getCompanyId())).isEmpty())) {
       throw new NotFoundException(COMPANY_ERROR_MESSAGE);
     }
-//    createShares.forEach(s -> companyRepository.save(
-//        companyRepository.findById(s.getCompanyId()).get()
-//            .addShare(modelMapper.map(s, Share.class))));
-
-//    List<Company> companies = createShares.stream()
-//        .map(s -> companyRepository.findById(s.getCompanyId()).get()).toList();
-//    companies.forEach(
-//        c -> c.addShare(modelMapper.map(createShares.get(companies.indexOf(c)), Share.class)));
-//    companyRepository.saveAll(companies);
-//    List<Share> shares =
-//        createShares.stream().map(s -> modelMapper.map(s, Share.class))
-//            .toList();
-//    shareRepository.saveAll(shares);
     createShares.forEach(s -> {
-      Company company = companyRepository.findById(s.getCompanyId()).orElse(null);
-      if (company != null) {
-        company.addShare(modelMapper.map(s, Share.class));
-        companyRepository.save(company);
-      }
+      companyRepository.findById(s.getCompanyId())
+          .ifPresent(company -> {
+            company.addShare(modelMapper.map(s, Share.class));
+            companyRepository.save(company);
+          });
     });
     List<Share> shares =
         createShares.stream().map(s -> modelMapper.map(s, Share.class))

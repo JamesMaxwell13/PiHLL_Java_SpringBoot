@@ -14,9 +14,12 @@ import com.sharesapp.backend.repository.UserRepository;
 import com.sharesapp.backend.service.UserService;
 import com.sharesapp.backend.utils.cache.GenericCache;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,6 +90,7 @@ public class UserServiceImpl implements UserService {
     if (users.isEmpty()) {
       throw new NotFoundException(USER_LIST_ERROR_MESSAGE);
     }
+    users.sort(Comparator.comparing(User::getId));
     return Optional.of(Arrays.asList(modelMapper.map(users, UserDto[].class)));
   }
 
@@ -143,7 +147,9 @@ public class UserServiceImpl implements UserService {
     if (user.getShares().isEmpty()) {
       throw new NotFoundException("There are no shares");
     }
-    return Optional.of(Arrays.asList(modelMapper.map(user.getShares(), ShareDto[].class)));
+    List<Share> shares = new ArrayList<>(user.getShares());
+    shares.sort(Comparator.comparing(Share::getId));
+    return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
   }
 
   @Logging
