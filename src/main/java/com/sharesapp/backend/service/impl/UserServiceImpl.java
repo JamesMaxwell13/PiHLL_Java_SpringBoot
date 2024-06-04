@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +45,9 @@ public class UserServiceImpl implements UserService {
   @Logging
   @Override
   public Optional<UserDto> createUser(CreateUser createUser) throws BadRequestException {
-    if (Optional.ofNullable(createUser.getFirstName()).isEmpty()
-        || Optional.ofNullable(createUser.getLastName()).isEmpty()) {
+    if (createUser.getFirstName().isEmpty() || createUser.getLastName().isEmpty()) {
+//      Optional.ofNullable(createUser.getFirstName()).isEmpty()
+//          || Optional.ofNullable(createUser.getLastName()).isEmpty()
       throw new BadRequestException("Wrong user name");
     }
     User savedUser = userRepository.save(modelMapper.map(createUser, User.class));
@@ -98,8 +98,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<UserDto> updateUser(Long id, UserDto userDto) throws BadRequestException {
     User user = cache.get(id).orElseGet(() -> userRepository.findById(id).orElse(null));
-    if (user == null || Optional.ofNullable(userDto.getFirstName()).isEmpty()
-        || Optional.ofNullable(userDto.getLastName()).isEmpty()) {
+    if (user == null || userDto.getFirstName().isEmpty() || userDto.getLastName().isEmpty()) {
       throw new BadRequestException("Wrong user name or there is no such user");
     }
     cache.remove(id);

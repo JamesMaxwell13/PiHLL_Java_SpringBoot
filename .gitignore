@@ -39,4 +39,4 @@ build/
 mvnw.cmd
 mvnw
 
-app.log
+.log
