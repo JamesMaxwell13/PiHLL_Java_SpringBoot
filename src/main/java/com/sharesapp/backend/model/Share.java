@@ -59,7 +59,7 @@ public class Share {
   @ToString.Exclude
   private Set<User> users = new HashSet<>();
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinColumn(name = "company_id", nullable = false)
   private Company company = new Company();
 }

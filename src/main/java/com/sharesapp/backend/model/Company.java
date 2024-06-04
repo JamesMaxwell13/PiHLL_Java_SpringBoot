@@ -1,5 +1,6 @@
 package com.sharesapp.backend.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,9 +39,8 @@ public class Company {
   @Column(name = "website")
   private String website;
 
-  @Column(name = "shares")
-  @OneToMany(orphanRemoval = true)
-  @JoinColumn(name = "share_id")
+  @OneToMany(mappedBy = "company", cascade = {CascadeType.REMOVE,
+      CascadeType.DETACH}, orphanRemoval = true)
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
   private Set<Share> shares = new HashSet<>();

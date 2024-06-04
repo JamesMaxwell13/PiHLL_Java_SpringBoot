@@ -8,6 +8,7 @@ import com.sharesapp.backend.exceptions.NotFoundException;
 import com.sharesapp.backend.model.Company;
 import com.sharesapp.backend.model.Share;
 import com.sharesapp.backend.repository.CompanyRepository;
+import com.sharesapp.backend.repository.ShareRepository;
 import com.sharesapp.backend.service.CompanyService;
 import com.sharesapp.backend.utils.cache.GenericCache;
 import jakarta.transaction.Transactional;
@@ -25,13 +26,16 @@ import org.springframework.stereotype.Service;
 public class CompanyServiceImpl implements CompanyService {
   private static final String COMPANY_ERROR_MESSAGE = "There is no company with id = ";
   private final CompanyRepository companyRepository;
+  private final ShareRepository shareRepository;
   private final GenericCache<Long, Company> cache;
   private final ModelMapper modelMapper;
 
   @Autowired
-  public CompanyServiceImpl(CompanyRepository companyRepository, GenericCache<Long, Company> cache,
+  public CompanyServiceImpl(CompanyRepository companyRepository, ShareRepository shareRepository,
+                            GenericCache<Long, Company> cache,
                             ModelMapper modelMapper) {
     this.companyRepository = companyRepository;
+    this.shareRepository = shareRepository;
     this.cache = cache;
     this.modelMapper = modelMapper;
   }
@@ -108,6 +112,12 @@ public class CompanyServiceImpl implements CompanyService {
     if (company == null) {
       throw new NotFoundException(COMPANY_ERROR_MESSAGE, id);
     }
+    List<Share> shares = new ArrayList<>(company.getShares());
+    shares.forEach(s -> {
+      company.removeShare(s.getId());
+      companyRepository.saveAndFlush(company);
+      shareRepository.deleteById(s.getId());
+    });
     cache.remove(id);
     companyRepository.deleteById(id);
     return Optional.of(modelMapper.map(company, CompanyDto.class));

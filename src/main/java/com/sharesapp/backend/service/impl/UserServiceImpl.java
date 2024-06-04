@@ -46,8 +46,6 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<UserDto> createUser(CreateUser createUser) throws BadRequestException {
     if (createUser.getFirstName().isEmpty() || createUser.getLastName().isEmpty()) {
-//      Optional.ofNullable(createUser.getFirstName()).isEmpty()
-//          || Optional.ofNullable(createUser.getLastName()).isEmpty()
       throw new BadRequestException("Wrong user name");
     }
     User savedUser = userRepository.save(modelMapper.map(createUser, User.class));
