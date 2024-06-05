@@ -1,10 +1,258 @@
-14:55:22.248 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
-14:55:38.750 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-14:55:38.750 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
-14:55:38.761 INFO  c.s.backend.aspect.LoggingAspect - Called method createShare() with args: [CreateShare(companyId=1)]
-14:55:38.966 INFO  c.s.backend.aspect.LoggingAspect - Method createShare is returned with value: Optional[ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]
-14:55:42.626 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-14:55:42.627 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 2
-14:55:42.628 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
-14:55:42.639 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
-14:56:09.030 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed
+16:03:27.883 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+16:05:37.693 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:05:37.693 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
+16:05:37.708 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:05:38.108 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:05:38.336 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:05:38.336 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 2
+16:05:38.336 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:05:38.352 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:09:26.611 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:09:26.619 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 3
+16:09:26.619 INFO  c.s.backend.aspect.LoggingAspect - Called method getCompany() with args: [1]
+16:09:26.636 INFO  c.s.backend.aspect.LoggingAspect - Method getCompany is returned with value: Optional[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+16:09:26.661 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:09:26.661 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 4
+16:09:26.665 INFO  c.s.backend.aspect.LoggingAspect - Called method getCompany() with args: [1]
+16:09:26.666 INFO  c.s.backend.aspect.LoggingAspect - Method getCompany is returned with value: Optional[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+16:09:28.595 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:09:28.595 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 5
+16:09:28.595 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:09:28.610 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:09:28.622 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:09:28.622 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 6
+16:09:28.622 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:09:28.629 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:09.505 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:09.506 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 7
+16:11:09.508 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:09.516 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:09.532 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:09.532 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 8
+16:11:09.532 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:09.532 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:13.586 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:13.586 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 9
+16:11:13.586 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:11:13.622 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:13.640 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:13.640 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 10
+16:11:13.640 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:11:13.663 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:15.382 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:15.382 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 11
+16:11:15.383 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:15.383 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:15.397 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:15.397 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 12
+16:11:15.399 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:15.399 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:17.297 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:17.297 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 13
+16:11:17.308 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:11:17.316 ERROR c.s.backend.aspect.LoggingAspect - In the method getShares() throwed exception with message: There are no shares
+16:11:17.343 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:17.343 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 14
+16:11:17.343 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:11:17.350 ERROR c.s.backend.aspect.LoggingAspect - In the method getShares() throwed exception with message: There are no shares
+16:11:22.312 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:22.312 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 15
+16:11:22.315 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:22.320 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:22.329 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:22.329 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 16
+16:11:22.329 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:22.331 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:23.595 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:23.595 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 17
+16:11:23.595 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:11:23.606 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:23.623 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:23.623 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 18
+16:11:23.623 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:11:23.638 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:27.514 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:27.514 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 19
+16:11:27.514 INFO  c.s.backend.aspect.LoggingAspect - Called method buyShare() with args: [1, 1]
+16:11:27.530 INFO  c.s.backend.aspect.LoggingAspect - Method buyShare is returned with value: Optional[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK)]
+16:11:27.605 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:27.605 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 20
+16:11:27.605 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:11:27.628 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:30.551 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:30.551 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 21
+16:11:30.552 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:30.556 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:30.568 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:30.569 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 22
+16:11:30.569 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:11:30.569 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:11:32.229 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:32.230 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 23
+16:11:32.231 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:11:32.239 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK)]]
+16:11:32.247 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:32.251 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 24
+16:11:32.251 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:11:32.258 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK)]]
+16:11:39.218 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:39.218 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 25
+16:11:39.218 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+16:11:39.230 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+16:11:39.239 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:39.239 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 26
+16:11:39.240 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+16:11:39.240 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+16:11:41.414 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:41.414 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 27
+16:11:41.414 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:11:41.422 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:41.434 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:41.434 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 28
+16:11:41.434 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:11:41.443 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:11:42.840 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:42.840 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 29
+16:11:42.842 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+16:11:42.849 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+16:11:42.856 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:11:42.857 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 30
+16:11:42.857 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+16:11:42.862 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+16:12:02.229 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:02.229 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 31
+16:12:02.230 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:12:02.230 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:12:02.250 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:02.251 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 32
+16:12:02.251 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:12:02.260 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:12:08.598 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:08.598 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 33
+16:12:08.600 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:12:08.601 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:12:08.615 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:08.616 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 34
+16:12:08.616 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:12:08.616 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:12:15.829 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:15.829 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 35
+16:12:15.829 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:12:15.829 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:12:15.844 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:15.846 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 36
+16:12:15.846 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:12:15.846 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:12:19.882 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:19.883 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 37
+16:12:19.883 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:12:19.892 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:12:19.901 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:12:19.902 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 38
+16:12:19.903 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:12:19.910 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:10.896 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:10.905 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 39
+16:57:10.909 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:57:10.929 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK)]]
+16:57:10.953 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:10.954 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 40
+16:57:10.955 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:57:10.961 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK)]]
+16:57:13.120 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:13.120 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 41
+16:57:13.123 INFO  c.s.backend.aspect.LoggingAspect - Called method sellShare() with args: [1, 1]
+16:57:13.142 INFO  c.s.backend.aspect.LoggingAspect - Method sellShare is returned with value: Optional[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK)]
+16:57:13.168 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:13.168 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 42
+16:57:13.168 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:57:13.168 ERROR c.s.backend.aspect.LoggingAspect - In the method getShares() throwed exception with message: There are no shares
+16:57:15.770 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:15.770 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 43
+16:57:15.772 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:15.777 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:15.785 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:15.787 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 44
+16:57:15.787 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:15.789 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:17.640 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:17.640 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 45
+16:57:17.642 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:57:17.657 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:57:17.667 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:17.668 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 46
+16:57:17.668 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:57:17.684 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:57:19.040 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:19.040 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 47
+16:57:19.041 INFO  c.s.backend.aspect.LoggingAspect - Called method buyShare() with args: [1, 3]
+16:57:19.053 INFO  c.s.backend.aspect.LoggingAspect - Method buyShare is returned with value: Optional[ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL)]
+16:57:19.071 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:19.072 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 48
+16:57:19.072 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:57:19.074 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:57:20.090 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:20.090 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 49
+16:57:20.094 INFO  c.s.backend.aspect.LoggingAspect - Called method buyShare() with args: [1, 2]
+16:57:20.106 INFO  c.s.backend.aspect.LoggingAspect - Method buyShare is returned with value: Optional[ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL)]
+16:57:20.126 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:20.126 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 50
+16:57:20.126 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:57:20.142 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:57:20.791 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:20.791 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 51
+16:57:20.791 INFO  c.s.backend.aspect.LoggingAspect - Called method buyShare() with args: [1, 4]
+16:57:20.791 INFO  c.s.backend.aspect.LoggingAspect - Method buyShare is returned with value: Optional[ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР)]
+16:57:20.824 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:20.824 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 52
+16:57:20.824 INFO  c.s.backend.aspect.LoggingAspect - Called method getNotPurchasedShares() with args: [1]
+16:57:20.839 INFO  c.s.backend.aspect.LoggingAspect - Method getNotPurchasedShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:57:22.327 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:22.327 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 53
+16:57:22.329 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:22.335 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:22.345 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:22.345 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 54
+16:57:22.345 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:22.345 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:23.558 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:23.558 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 55
+16:57:23.560 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:57:23.569 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР)]]
+16:57:23.577 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:23.578 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 56
+16:57:23.578 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:57:23.585 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР)]]
+16:57:25.204 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:25.204 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 57
+16:57:25.204 INFO  c.s.backend.aspect.LoggingAspect - Called method sellShare() with args: [1, 3]
+16:57:25.207 INFO  c.s.backend.aspect.LoggingAspect - Method sellShare is returned with value: Optional[ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL)]
+16:57:25.238 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:25.238 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 58
+16:57:25.238 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+16:57:25.240 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР)]]
+16:57:26.754 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:26.754 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 59
+16:57:26.756 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:26.760 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:26.760 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:26.760 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 60
+16:57:26.767 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:26.767 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:27.814 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:27.814 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 61
+16:57:27.816 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:57:27.821 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:57:27.836 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:27.836 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 62
+16:57:27.836 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+16:57:27.838 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+16:57:42.293 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:42.294 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 63
+16:57:42.297 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:42.300 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+16:57:42.309 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+16:57:42.309 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 64
+16:57:42.311 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+16:57:42.311 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+17:13:38.746 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed

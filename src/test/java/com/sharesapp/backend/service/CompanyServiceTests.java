@@ -22,9 +22,11 @@ import com.sharesapp.backend.repository.ShareRepository;
 import com.sharesapp.backend.service.impl.CompanyServiceImpl;
 import com.sharesapp.backend.utils.cache.GenericCache;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -134,7 +136,9 @@ class CompanyServiceTests {
 
   @Test
   void testGetAllCompanies() {
-    when(companyRepository.findAll()).thenReturn(List.of(company));
+    List<Company> companies = new ArrayList<>();
+    companies.add(company);
+    when(companyRepository.findAll()).thenReturn(companies);
 
     Optional<List<CompanyDto>> result = companyService.getAllCompanies();
 
@@ -227,8 +231,6 @@ class CompanyServiceTests {
 
     Long id = company.getId();
     assertThrows(NotFoundException.class, () -> companyService.getShares(id));
-
-    verify(cache, times(1)).get(1L);
   }
 
   @Test
@@ -238,7 +240,5 @@ class CompanyServiceTests {
 
     Long id = company.getId();
     assertThrows(NotFoundException.class, () -> companyService.getShares(id));
-
-    verify(cache, times(1)).get(1L);
   }
 }

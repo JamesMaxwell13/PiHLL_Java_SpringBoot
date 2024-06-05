@@ -58,8 +58,8 @@ public class UserServiceImpl implements UserService {
   @Override
   public Optional<List<UserDto>> createManyUsers(List<CreateUser> createUsers)
       throws BadRequestException {
-    if (createUsers.stream().anyMatch(u -> (Optional.ofNullable(u.getFirstName()).isEmpty()
-        || Optional.ofNullable(u.getLastName()).isEmpty()))) {
+    if (createUsers.stream().anyMatch(u -> (u.getFirstName()).isEmpty()
+        || u.getLastName().isEmpty())) {
       throw new BadRequestException("Wrong users or its name");
     }
     List<User> users =

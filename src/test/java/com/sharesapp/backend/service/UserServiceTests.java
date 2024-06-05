@@ -58,7 +58,7 @@ class UserServiceTests {
   @Mock
   private CompanyRepository companyRepository;
   @Mock
-  private GenericCache<Long, User> cache; 
+  private GenericCache<Long, User> cache;
   @InjectMocks
   private UserServiceImpl userService;
   @Spy
@@ -96,7 +96,7 @@ class UserServiceTests {
   void testCreateUserThrowFirstName() {
     when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
 
-    createUser.setFirstName(null);
+    createUser.setFirstName("");
     assertThrows(BadRequestException.class, () -> userService.createUser(createUser));
   }
 
@@ -104,7 +104,7 @@ class UserServiceTests {
   void testCreateUserThrowLastName() {
     when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
 
-    createUser.setLastName(null);
+    createUser.setLastName("");
     assertThrows(BadRequestException.class, () -> userService.createUser(createUser));
   }
 
@@ -130,7 +130,7 @@ class UserServiceTests {
 
   @Test
   void testCreateManyUserThrowFirstName() {
-    user.setFirstName(null);
+    user.setFirstName("");
     List<CreateUser> users =
         Stream.of(user, user, user).map(u -> modelMapper.map(u, CreateUser.class)).toList();
     assertThrows(BadRequestException.class, () -> userService.createManyUsers(users));
@@ -138,7 +138,7 @@ class UserServiceTests {
 
   @Test
   void testCreateManyUserThrowLastName() {
-    user.setLastName(null);
+    user.setLastName("");
     List<CreateUser> users =
         Stream.of(user, user, user).map(u -> modelMapper.map(u, CreateUser.class)).toList();
     assertThrows(BadRequestException.class, () -> userService.createManyUsers(users));
@@ -159,7 +159,7 @@ class UserServiceTests {
 
   @Test
   void testGetAllUsers() {
-    when(userRepository.findAll()).thenReturn(List.of(user));
+    when(userRepository.findAll()).thenReturn(Collections.singletonList(user));
 
     Optional<List<UserDto>> result = userService.getAllUsers();
 
@@ -195,7 +195,7 @@ class UserServiceTests {
     when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
 
     Long id = user.getId();
-    user.setFirstName(null);
+    user.setFirstName("");
     UserDto userDto = modelMapper.map(user, UserDto.class);
     assertThrows(BadRequestException.class, () -> userService.updateUser(id, userDto));
   }
@@ -206,14 +206,14 @@ class UserServiceTests {
     when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
 
     Long id = user.getId();
-    user.setLastName(null);
+    user.setLastName("");
     UserDto userDto = modelMapper.map(user, UserDto.class);
     assertThrows(BadRequestException.class, () -> userService.updateUser(id, userDto));
   }
 
   @Test
   void testUpdateUserThrowNull() {
-    when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
+    when(userRepository.save(any(User.class))).thenReturn(user);
     when(userRepository.findById(1L)).thenReturn(Optional.empty());
     when(cache.get(1L)).thenReturn(Optional.empty());
 
