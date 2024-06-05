@@ -76,13 +76,11 @@ public class ShareServiceImpl implements ShareService {
         .anyMatch(s -> (companyRepository.findById(s.getCompanyId())).isEmpty())) {
       throw new NotFoundException(COMPANY_ERROR_MESSAGE);
     }
-    createShares.forEach(s -> {
-      companyRepository.findById(s.getCompanyId())
-          .ifPresent(company -> {
-            company.addShare(modelMapper.map(s, Share.class));
-            companyRepository.save(company);
-          });
-    });
+    createShares.forEach(s -> companyRepository.findById(s.getCompanyId())
+        .ifPresent(company -> {
+          company.addShare(modelMapper.map(s, Share.class));
+          companyRepository.save(company);
+        }));
     List<Share> shares =
         createShares.stream().map(s -> modelMapper.map(s, Share.class))
             .toList();
