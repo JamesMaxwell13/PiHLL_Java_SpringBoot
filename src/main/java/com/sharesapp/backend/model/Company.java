@@ -39,8 +39,7 @@ public class Company {
   @Column(name = "website")
   private String website;
 
-  @OneToMany(mappedBy = "company", cascade = {CascadeType.REMOVE,
-      CascadeType.DETACH}, orphanRemoval = true)
+  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
   private Set<Share> shares = new HashSet<>();
