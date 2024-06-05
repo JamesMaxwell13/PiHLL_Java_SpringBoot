@@ -3,6 +3,7 @@ package com.sharesapp.backend.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
@@ -114,32 +115,32 @@ class ShareServiceTests {
     verify(companyRepository, times(1)).findById(anyLong());
   }
 
-//  @Test
-//  void testCreateManyShares() {
-//    when(cache.get(1L)).thenReturn(Optional.ofNullable(share));
-//    when(shareRepository.save(any(Share.class))).thenReturn(share);
-//    when(companyRepository.save(any(Company.class))).thenReturn(company);
-//    when(companyRepository.findById(1L)).thenReturn(Optional.ofNullable(company));
-//
-//    List<Share> shares = List.of(share, share, share);
-//    List<CreateShare> createShares =
-//        shares.stream().map(s -> modelMapper.map(s, CreateShare.class)).toList();
-//    Optional<List<ShareDto>>
-//        result =
-//        shareService.createManyShares(createShares.stream().peek(c -> c.setCompanyId(1L)).toList());
-//
-//    assertTrue(result.isPresent());
-//    assertEquals(shares.stream().map(u -> modelMapper.map(u, ShareDto.class)).toList(),
-//        result.get());
-//    verify(shareRepository, times(3)).save(any(Share.class));
-//    verify(companyRepository, times(3)).save(any(Company.class));
-//    verify(cache, times(3)).put(1L, share);
-//
-//    Optional<Share> cacheShare = cache.get(share.getId());
-//    assertTrue(cacheShare.isPresent());
-//    assertEquals(share, cacheShare.get());
-//    verify(cache, times(1)).clear();
-//  }
+  @Test
+  void testCreateManyShares() {
+    List<Share> shares = new ArrayList<>();
+    shares.add(share);
+    company.addShare(share);
+    when(cache.get(1L)).thenReturn(Optional.ofNullable(share));
+    when(shareRepository.saveAll(anyList())).thenReturn(shares);
+    when(companyRepository.save(any(Company.class))).thenReturn(company);
+    when(companyRepository.findById(1L)).thenReturn(Optional.ofNullable(company));
+
+    List<CreateShare> createShares =
+        shares.stream().map(s -> modelMapper.map(s, CreateShare.class)).toList();
+    createShares.forEach(s -> s.setCompanyId(1L));
+    Optional<List<ShareDto>> result = shareService.createManyShares(createShares);
+
+    assertTrue(result.isPresent());
+    assertEquals(shares.stream().map(u -> modelMapper.map(u, ShareDto.class)).toList(),
+        result.get());
+    verify(shareRepository, times(1)).saveAll(anyList());
+    verify(companyRepository, times(1)).save(any(Company.class));
+
+    Optional<Share> cacheShare = cache.get(share.getId());
+    assertTrue(cacheShare.isPresent());
+    assertEquals(share, cacheShare.get());
+    verify(cache, times(1)).clear();
+  }
 
   @Test
   void testCreateManyShareThrowCompanyId() {

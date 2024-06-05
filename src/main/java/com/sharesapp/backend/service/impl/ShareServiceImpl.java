@@ -68,7 +68,7 @@ public class ShareServiceImpl implements ShareService {
   public Optional<List<ShareDto>> createManyShares(List<CreateShare> createShares)
       throws BadRequestException {
     if (createShares.stream()
-        .anyMatch(s -> (Optional.ofNullable(s.getCompanyId()).isEmpty() || s.getSymbol().isEmpty()
+        .anyMatch(s -> (s.getSymbol().isEmpty() || Optional.ofNullable(s.getCompanyId()).isEmpty()
             || Optional.ofNullable(s.getLastSalePrice()).isEmpty()))) {
       throw new BadRequestException("Wrong shares or its name");
     }
