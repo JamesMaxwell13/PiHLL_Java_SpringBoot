@@ -26,6 +26,8 @@ public interface UserService {
 
   Optional<List<ShareDto>> getShares(Long id);
 
+  Optional<List<ShareDto>> getNotPurchasedShares(Long id);
+
   Optional<List<UserShareDto>> getUsersSharesAndCompanies();
 
   Optional<List<UserShareDto>> getUsersByCompanyAndSharePriceRange(Long companyId, Float minPrice,

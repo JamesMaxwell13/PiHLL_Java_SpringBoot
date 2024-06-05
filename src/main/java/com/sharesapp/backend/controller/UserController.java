@@ -75,6 +75,11 @@ public class UserController {
     return ResponseEntity.of(userService.getShares(id));
   }
 
+  @GetMapping("/{id}/shares/none")
+  public ResponseEntity<List<ShareDto>> getNotPurchasedShares(@PathVariable("id") Long id) {
+    return ResponseEntity.of(userService.getNotPurchasedShares(id));
+  }
+
   @DeleteMapping("/{id}/shares")
   public ResponseEntity<ShareDto> sellShare(@PathVariable("id") Long userId,
                                             @RequestParam(value = "share_id") Long shareId) {

@@ -151,6 +151,22 @@ public class UserServiceImpl implements UserService {
 
   @Logging
   @Override
+  public Optional<List<ShareDto>> getNotPurchasedShares(Long id) throws NotFoundException {
+    User user = cache.get(id).orElseGet(() -> userRepository.findById(id).orElse(null));
+    List<Share> shares = shareRepository.findAll();
+    if (user == null) {
+      throw new NotFoundException(USER_ERROR_MESSAGE, id);
+    }
+    if (shares.isEmpty()) {
+      throw new NotFoundException("There are no shares");
+    }
+    shares.removeAll(user.getShares());
+    shares.sort(Comparator.comparing(Share::getId));
+    return Optional.of(Arrays.asList(modelMapper.map(shares, ShareDto[].class)));
+  }
+
+  @Logging
+  @Override
   public Optional<ShareDto> sellShare(Long userId, Long shareId) throws NotFoundException {
     User user = cache.get(userId).orElseGet(() -> userRepository.findById(userId).orElse(null));
     Share share = shareRepository.findById(shareId).orElse(null);
