@@ -1,10 +1,13 @@
 package com.sharesapp.backend.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
@@ -40,7 +43,10 @@ public class User {
   @Column(name = "password")
   private String password;
 
-  @ManyToMany(mappedBy = "users")
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "users_shares",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "share_id"))
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
   private Set<Share> shares = new HashSet<>();

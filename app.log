@@ -1,25 +1,10 @@
-02:33:23.294 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
-02:33:34.864 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-02:33:34.864 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
-02:33:34.873 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
-02:33:35.029 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
-02:33:35.138 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-02:33:35.138 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 2
-02:33:35.139 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
-02:33:35.142 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
-02:33:46.721 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-02:33:46.722 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 3
-02:33:46.723 INFO  c.s.backend.aspect.LoggingAspect - Called method getById() with args: [1]
-02:33:46.745 INFO  c.s.backend.aspect.LoggingAspect - Method getById is returned with value: Optional[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
-02:33:46.756 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-02:33:46.757 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 4
-02:33:46.759 INFO  c.s.backend.aspect.LoggingAspect - Called method getById() with args: [1]
-02:33:46.759 INFO  c.s.backend.aspect.LoggingAspect - Method getById is returned with value: Optional[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
-02:33:48.603 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-02:33:48.604 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 5
-02:33:48.605 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
-02:33:48.608 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
-02:33:48.615 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
-02:33:48.615 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 6
-02:33:48.616 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
-02:33:48.619 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+04:41:33.352 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+04:42:17.503 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+04:42:17.503 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
+04:42:17.504 INFO  c.s.backend.aspect.LoggingAspect - Called method buyShare() with args: [2, 3]
+04:42:17.555 INFO  c.s.backend.aspect.LoggingAspect - Method buyShare is returned with value: Optional[ShareDto(id=3, prevClosePrice=54.0, highPrice=4.0, lowPrice=576.0, openPrice=1000.0, lastSalePrice=67.0, lastTimeUpdated=1970-01-01T00:01:38Z, symbol=3)]
+04:42:23.495 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+04:42:23.495 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 2
+04:42:23.498 INFO  c.s.backend.aspect.LoggingAspect - Called method deleteUser() with args: [2]
+04:42:23.520 INFO  c.s.backend.aspect.LoggingAspect - Method deleteUser is returned with value: Optional[UserDto(id=2, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
+04:42:28.391 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed

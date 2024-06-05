@@ -162,6 +162,7 @@ public class UserServiceImpl implements UserService {
     }
     user.removeShare(shareId);
     userRepository.save(user);
+    shareRepository.save(share);
     return Optional.of(modelMapper.map(share, ShareDto.class));
   }
 
