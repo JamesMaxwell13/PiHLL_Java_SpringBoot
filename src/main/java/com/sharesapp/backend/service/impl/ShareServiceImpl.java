@@ -52,7 +52,8 @@ public class ShareServiceImpl implements ShareService {
       throw new BadRequestException("Wrong share information");
     }
     if (company == null) {
-      throw new NotFoundException(COMPANY_ERROR_MESSAGE + " with id = ", createShare.getCompanyId());
+      throw new NotFoundException(COMPANY_ERROR_MESSAGE + " with id = ",
+          createShare.getCompanyId());
     }
     company.addShare(share);
     companyRepository.save(company);
