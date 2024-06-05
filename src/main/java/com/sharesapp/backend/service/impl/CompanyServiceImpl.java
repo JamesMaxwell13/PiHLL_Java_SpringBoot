@@ -126,7 +126,7 @@ public class CompanyServiceImpl implements CompanyService {
   @Logging
   @Override
   public Optional<List<ShareDto>> getShares(Long id) {
-    Company company = cache.get(id).orElseGet(() -> companyRepository.findById(id).orElse(null));
+    Company company = companyRepository.findById(id).orElse(null);
     if (company == null) {
       throw new NotFoundException(COMPANY_ERROR_MESSAGE, id);
     }

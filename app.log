@@ -1,1 +1,10 @@
-14:09:22.022 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+14:55:22.248 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+14:55:38.750 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+14:55:38.750 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
+14:55:38.761 INFO  c.s.backend.aspect.LoggingAspect - Called method createShare() with args: [CreateShare(companyId=1)]
+14:55:38.966 INFO  c.s.backend.aspect.LoggingAspect - Method createShare is returned with value: Optional[ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]
+14:55:42.626 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+14:55:42.627 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 2
+14:55:42.628 INFO  c.s.backend.aspect.LoggingAspect - Called method getShares() with args: [1]
+14:55:42.639 INFO  c.s.backend.aspect.LoggingAspect - Method getShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=KK), ShareDto(id=2, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=3, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=LL), ShareDto(id=4, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=РР), ShareDto(id=5, prevClosePrice=55.0, highPrice=45.0, lowPrice=35.0, openPrice=45.5, lastSalePrice=45.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=SS)]]
+14:56:09.030 INFO  c.s.backend.aspect.LoggingAspect - Aspect is destroyed

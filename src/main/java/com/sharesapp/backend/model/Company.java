@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
@@ -39,7 +38,8 @@ public class Company {
   @Column(name = "website")
   private String website;
 
-  @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "company", cascade = {CascadeType.REMOVE,
+      CascadeType.DETACH}, orphanRemoval = true)
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
   private Set<Share> shares = new HashSet<>();

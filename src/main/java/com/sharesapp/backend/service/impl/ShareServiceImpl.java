@@ -56,8 +56,8 @@ public class ShareServiceImpl implements ShareService {
           createShare.getCompanyId());
     }
     company.addShare(share);
-    companyRepository.save(company);
-    Share savedShare = shareRepository.save(share);
+    Share savedShare = shareRepository.saveAndFlush(share);
+    companyRepository.saveAndFlush(company);
     cache.clear();
     cache.put(savedShare.getId(), savedShare);
     return Optional.of(modelMapper.map(savedShare, ShareDto.class));
