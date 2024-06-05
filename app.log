@@ -1,1 +1,121 @@
-07:18:38.740 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+13:51:40.669 INFO  c.s.backend.aspect.LoggingAspect - Aspect is initialized
+13:52:15.598 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:15.598 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 1
+13:52:15.606 INFO  c.s.backend.aspect.LoggingAspect - Called method createCompany() with args: [CompanyDto(id=null, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:52:15.708 INFO  c.s.backend.aspect.LoggingAspect - Method createCompany is returned with value: Optional[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:52:16.854 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:16.854 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 2
+13:52:16.855 INFO  c.s.backend.aspect.LoggingAspect - Called method createCompany() with args: [CompanyDto(id=null, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:52:16.857 INFO  c.s.backend.aspect.LoggingAspect - Method createCompany is returned with value: Optional[CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:52:18.037 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:18.037 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 3
+13:52:18.038 INFO  c.s.backend.aspect.LoggingAspect - Called method createCompany() with args: [CompanyDto(id=null, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:52:18.041 INFO  c.s.backend.aspect.LoggingAspect - Method createCompany is returned with value: Optional[CompanyDto(id=3, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:52:21.737 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:21.737 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 4
+13:52:21.737 INFO  c.s.backend.aspect.LoggingAspect - Called method createManyShares() with args: [[CreateShare(companyId=2), CreateShare(companyId=3)]]
+13:52:21.832 INFO  c.s.backend.aspect.LoggingAspect - Method createManyShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=5.0, highPrice=4.0, lowPrice=3.0, openPrice=4.5, lastSalePrice=4.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=a), ShareDto(id=2, prevClosePrice=6.0, highPrice=5.0, lowPrice=4.0, openPrice=5.5, lastSalePrice=5.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=b)]]
+13:52:25.755 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:25.756 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 5
+13:52:25.757 INFO  c.s.backend.aspect.LoggingAspect - Called method createShare() with args: [CreateShare(companyId=10)]
+13:52:25.759 ERROR c.s.backend.aspect.LoggingAspect - In the method createShare() throwed exception with message: There is no such company with id = 10
+13:52:28.623 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:28.623 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 6
+13:52:28.626 INFO  c.s.backend.aspect.LoggingAspect - Called method createUser() with args: [CreateUser(password=password)]
+13:52:28.642 INFO  c.s.backend.aspect.LoggingAspect - Method createUser is returned with value: Optional[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
+13:52:29.857 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:29.858 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 7
+13:52:29.858 INFO  c.s.backend.aspect.LoggingAspect - Called method createUser() with args: [CreateUser(password=password)]
+13:52:29.861 INFO  c.s.backend.aspect.LoggingAspect - Method createUser is returned with value: Optional[UserDto(id=2, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
+13:52:32.102 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:32.102 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 8
+13:52:32.103 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+13:52:32.143 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775), UserDto(id=2, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+13:52:32.159 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:32.159 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 9
+13:52:32.159 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+13:52:32.159 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775), UserDto(id=2, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+13:52:34.211 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:34.211 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 10
+13:52:34.212 INFO  c.s.backend.aspect.LoggingAspect - Called method getById() with args: [2]
+13:52:34.213 INFO  c.s.backend.aspect.LoggingAspect - Method getById is returned with value: Optional[UserDto(id=2, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
+13:52:34.216 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:34.217 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 11
+13:52:34.217 INFO  c.s.backend.aspect.LoggingAspect - Called method getById() with args: [2]
+13:52:34.217 INFO  c.s.backend.aspect.LoggingAspect - Method getById is returned with value: Optional[UserDto(id=2, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
+13:52:44.325 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:44.325 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 12
+13:52:44.326 INFO  c.s.backend.aspect.LoggingAspect - Called method updateUser() with args: [2, UserDto(id=null, firstName=Nastya, lastName=Ivanova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
+13:52:44.338 INFO  c.s.backend.aspect.LoggingAspect - Method updateUser is returned with value: Optional[UserDto(id=2, firstName=Nastya, lastName=Ivanova, email=cccc@gmail.com, phoneNumber=+3752945456775)]
+13:52:44.397 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:44.397 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 13
+13:52:44.398 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+13:52:44.400 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775), UserDto(id=2, firstName=Nastya, lastName=Ivanova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+13:52:44.405 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:44.405 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 14
+13:52:44.406 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllUsers() with args: []
+13:52:44.409 INFO  c.s.backend.aspect.LoggingAspect - Method getAllUsers is returned with value: Optional[[UserDto(id=1, firstName=Alexa, lastName=Sidorova, email=cccc@gmail.com, phoneNumber=+3752945456775), UserDto(id=2, firstName=Nastya, lastName=Ivanova, email=cccc@gmail.com, phoneNumber=+3752945456775)]]
+13:52:53.594 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:53.595 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 15
+13:52:53.596 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+13:52:53.604 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=5.0, highPrice=4.0, lowPrice=3.0, openPrice=4.5, lastSalePrice=4.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=a), ShareDto(id=2, prevClosePrice=6.0, highPrice=5.0, lowPrice=4.0, openPrice=5.5, lastSalePrice=5.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=b)]]
+13:52:53.612 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:53.613 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 16
+13:52:53.613 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllShares() with args: []
+13:52:53.619 INFO  c.s.backend.aspect.LoggingAspect - Method getAllShares is returned with value: Optional[[ShareDto(id=1, prevClosePrice=5.0, highPrice=4.0, lowPrice=3.0, openPrice=4.5, lastSalePrice=4.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=a), ShareDto(id=2, prevClosePrice=6.0, highPrice=5.0, lowPrice=4.0, openPrice=5.5, lastSalePrice=5.4, lastTimeUpdated=2007-12-03T10:15:30Z, symbol=b)]]
+13:52:55.594 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:55.594 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 17
+13:52:55.596 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:52:55.602 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=3, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=4, name=null, capitalize=null, adress=null, website=null), CompanyDto(id=5, name=null, capitalize=null, adress=null, website=null)]]
+13:52:55.610 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:52:55.611 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 18
+13:52:55.611 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:52:55.616 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=3, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=4, name=null, capitalize=null, adress=null, website=null), CompanyDto(id=5, name=null, capitalize=null, adress=null, website=null)]]
+13:53:10.348 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:10.348 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 19
+13:53:10.349 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:53:10.352 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=3, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=4, name=null, capitalize=null, adress=null, website=null), CompanyDto(id=5, name=null, capitalize=null, adress=null, website=null)]]
+13:53:22.235 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:22.235 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 20
+13:53:22.237 INFO  c.s.backend.aspect.LoggingAspect - Called method deleteCompany() with args: [4]
+13:53:22.258 INFO  c.s.backend.aspect.LoggingAspect - Method deleteCompany is returned with value: Optional[CompanyDto(id=4, name=null, capitalize=null, adress=null, website=null)]
+13:53:22.278 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:22.278 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 21
+13:53:22.278 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:53:22.282 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=3, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=5, name=null, capitalize=null, adress=null, website=null)]]
+13:53:22.781 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:22.781 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 22
+13:53:22.782 INFO  c.s.backend.aspect.LoggingAspect - Called method deleteCompany() with args: [5]
+13:53:22.788 INFO  c.s.backend.aspect.LoggingAspect - Method deleteCompany is returned with value: Optional[CompanyDto(id=5, name=null, capitalize=null, adress=null, website=null)]
+13:53:22.802 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:22.803 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 23
+13:53:22.803 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:53:22.806 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=3, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+13:53:27.009 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:27.009 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 24
+13:53:27.010 INFO  c.s.backend.aspect.LoggingAspect - Called method deleteCompany() with args: [3]
+13:53:27.014 INFO  c.s.backend.aspect.LoggingAspect - Method deleteCompany is returned with value: Optional[CompanyDto(id=3, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:53:27.027 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:27.027 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 25
+13:53:27.027 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:53:27.030 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+13:53:27.951 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:27.952 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 26
+13:53:27.953 INFO  c.s.backend.aspect.LoggingAspect - Called method deleteCompany() with args: [2]
+13:53:27.956 INFO  c.s.backend.aspect.LoggingAspect - Method deleteCompany is returned with value: Optional[CompanyDto(id=2, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:53:27.967 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:27.968 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 27
+13:53:27.968 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:53:27.971 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+13:53:34.182 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:34.182 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 28
+13:53:34.183 INFO  c.s.backend.aspect.LoggingAspect - Called method createCompany() with args: [CompanyDto(id=null, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:53:34.185 INFO  c.s.backend.aspect.LoggingAspect - Method createCompany is returned with value: Optional[CompanyDto(id=6, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]
+13:53:40.611 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:40.611 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 29
+13:53:40.612 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:53:40.617 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=6, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]
+13:53:40.623 INFO  c.s.backend.aspect.LoggingAspect - Called method increment() with args: []
+13:53:40.625 INFO  c.s.backend.aspect.LoggingAspect - Method increment is returned with value: 30
+13:53:40.626 INFO  c.s.backend.aspect.LoggingAspect - Called method getAllCompanies() with args: []
+13:53:40.630 INFO  c.s.backend.aspect.LoggingAspect - Method getAllCompanies is returned with value: Optional[[CompanyDto(id=1, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com), CompanyDto(id=6, name=google, capitalize=1.23334360087E9, adress=New York, st.Big Street,9, website=google.com)]]

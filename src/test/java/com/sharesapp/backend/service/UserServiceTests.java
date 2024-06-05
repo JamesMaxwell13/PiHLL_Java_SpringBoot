@@ -193,7 +193,6 @@ class UserServiceTests {
   void testUpdateUserThrowFirstName() {
     when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
     when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
-    when(cache.get(1L)).thenReturn(Optional.ofNullable(user));
 
     Long id = user.getId();
     user.setFirstName(null);
@@ -205,7 +204,6 @@ class UserServiceTests {
   void testUpdateUserThrowLastName() {
     when(userRepository.save(any(User.class))).thenThrow(new BadRequestException("Error"));
     when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
-    when(cache.get(1L)).thenReturn(Optional.ofNullable(user));
 
     Long id = user.getId();
     user.setLastName(null);

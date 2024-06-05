@@ -56,6 +56,6 @@ public class Share {
   private Set<User> users = new HashSet<>();
 
   @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-  @JoinColumn(name = "company_id", nullable = false)
+  @JoinColumn(name = "company_id")
   private Company company = new Company();
 }
